@@ -1,7 +1,8 @@
 import 'package:google_fonts/google_fonts.dart';
+import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
 import '../widgets/drawer_listTile.dart';
-import 'package:voom/widgets/my_list_tile.dart';
+import 'package:voom/widgets/logout_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/constants.dart';
 
@@ -19,7 +20,7 @@ class _HomeStateState extends State<HomeState> {
   int _selectedIndex = 0;
   final List _screens = [
     const HomeScreen(),
-    const HomeScreen(),
+    const CardPage(),
     const HomeScreen(),
     const HomeScreen(),
     const HomeScreen(),
@@ -142,7 +143,7 @@ class _HomeStateState extends State<HomeState> {
             ),
             SizedBox(
               width: double.infinity,
-              child: MyListTile(
+              child: MyLogOutListTile(
                   iconData: FontAwesomeIcons.arrowRightFromBracket,
                   text: 'Logout',
                   onPress: () {

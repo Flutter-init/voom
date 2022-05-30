@@ -16,3 +16,8 @@ const kAppBarBackgroundColor = Color(0xFF1D2136);
 const kSendFABcolor = Color.fromARGB(255, 27, 124, 6);
 const kBottomBarItemscolor = Color.fromARGB(255, 103, 245, 71);
 
+const kContainerDeco = BoxDecoration(
+  color: kActiveCardColor,
+  borderRadius: BorderRadius.only(
+      topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+);

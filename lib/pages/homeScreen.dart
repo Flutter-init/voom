@@ -79,7 +79,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Divider(
               color: kmonochromcolorwhite,
             ),
-          )
+          ),
         ],
       );
     }
@@ -173,12 +173,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return _buildRow();
                   },
                 ),
-                decoration: BoxDecoration(
-                  color: kActiveCardColor,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)),
-                ),
+                decoration: kContainerDeco,
               ),
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
 import 'package:voom/pages/home_state.dart';
 
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeState.id: (context) => const HomeState(),
         HomeScreen.id: (context) => const HomeScreen(),
+        CardPage.id:(context) => const CardPage(),
       },
     );
   }

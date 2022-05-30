@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/constants.dart';
 
-class MyListTile extends StatelessWidget {
+class MyLogOutListTile extends StatelessWidget {
   final IconData iconData;
   final String text;
   final VoidCallback onPress;
 
-  const MyListTile(
+  const MyLogOutListTile(
       {required this.iconData, required this.text, required this.onPress});
 
   @override
