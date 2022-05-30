@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
 import 'package:voom/pages/home_state.dart';
+import 'package:voom/pages/profile.dart';
+import 'package:voom/pages/send_page.dart';
+import 'package:voom/pages/spaces_page.dart';
 
 
 void main() {
@@ -25,6 +28,9 @@ class MyApp extends StatelessWidget {
         HomeState.id: (context) => const HomeState(),
         HomeScreen.id: (context) => const HomeScreen(),
         CardPage.id:(context) => const CardPage(),
+        ProfilePage.id:(context) => const ProfilePage(),
+        SendPage.id:(context) => const SendPage(),
+        SpacesPage.id:(context) => const SpacesPage(),
       },
     );
   }

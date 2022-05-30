@@ -12,7 +12,7 @@ class MListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       leading: CircleAvatar(
-        backgroundColor: kInactiveCardColor,
+        backgroundColor: kActiveCardColor,
         child: Icon(
           iconData,
           color: kmonochromcolorwhite,

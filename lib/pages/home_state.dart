@@ -1,6 +1,9 @@
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
+import 'package:voom/pages/profile.dart';
+import 'package:voom/pages/send_page.dart';
+import 'package:voom/pages/spaces_page.dart';
 import '../widgets/drawer_listTile.dart';
 import 'package:voom/widgets/logout_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -21,9 +24,9 @@ class _HomeStateState extends State<HomeState> {
   final List _screens = [
     const HomeScreen(),
     const CardPage(),
-    const HomeScreen(),
-    const HomeScreen(),
-    const HomeScreen(),
+    const SendPage(),
+    const SpacesPage(),
+    const ProfilePage(),
   ];
 
   void _onItemTapped(int index) {
@@ -36,16 +39,6 @@ class _HomeStateState extends State<HomeState> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: kSendFABcolor,
-        onPressed: () {},
-        tooltip: 'Send funds',
-        child: const Icon(
-          FontAwesomeIcons.paperPlane,
-        ),
-        elevation: 6.0,
-      ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: kActiveCardColor,
         type: BottomNavigationBarType.fixed,
@@ -67,19 +60,22 @@ class _HomeStateState extends State<HomeState> {
             label: 'Card',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.call_made, color: kActiveCardColor,
-              // color: kmoochromcolorwhite,
+            icon: CircleAvatar(
+              backgroundColor: kSendFABcolor,
+              child: Icon(
+                Icons.call_made,
+                // color: kmoochromcolorwhite,
+              ),
             ),
             label: 'Send',
           ),
           BottomNavigationBarItem(
-            tooltip: 'View recipients',
+            tooltip: 'View products',
             icon: Icon(
-              Icons.group,
+              Icons.workspaces,
               // color: kmoochromcolorwhite,
             ),
-            label: 'Recipients',
+            label: 'Spaces',
           ),
           BottomNavigationBarItem(
             tooltip: 'View your account',
