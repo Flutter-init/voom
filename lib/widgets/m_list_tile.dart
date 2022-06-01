@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
 
 class MListTile extends StatelessWidget {
   final Function()? onPress;

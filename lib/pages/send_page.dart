@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
 
 class SendPage extends StatelessWidget {
   static String id = '/sendPage';
@@ -26,6 +26,7 @@ class SendPage extends StatelessWidget {
       child: Scaffold(
         backgroundColor: kActiveCardColor,
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           toolbarHeight: 15,
           backgroundColor: kInactiveCardColor,
           bottom: TabBar(

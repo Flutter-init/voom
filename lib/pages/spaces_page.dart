@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
+import 'package:voom/widgets/myListTileCard.dart';
 import 'package:voom/widgets/my_card.dart';
+import 'package:voom/widgets/simpleCardListTile.dart';
 
 class SpacesPage extends StatelessWidget {
   static String id = '/spacesPage';
@@ -17,147 +19,76 @@ class SpacesPage extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  'Spaces',
-                  style: GoogleFonts.oswald(
-                      color: kmonochromcolorwhite, fontSize: 40),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10, top: 20),
-                child: Text(
-                  '\$5,000.00',
-                  style: GoogleFonts.oswald(
-                      color: kmonochromcolorwhite, fontSize: 60),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    const Icon(
-                      Icons.visibility,
-                      color: kmonochromcolor2,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Total balance',
-                      style: GoogleFonts.oswald(
-                          color: kmonochromcolor2, fontSize: 20),
-                    ),
-                  ],
-                ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      MyReusableCard(
-                          cardChild: const Icon(
-                            Icons.savings,
-                            color: kBottomBarItemscolor,
-                            size: 60,
-                          ),
-                          colour: kActiveCardColor,
-                          width: 150,
-                          height: 150),
-                      Text(
-                        'Main account',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolorwhite, fontSize: 16),
-                      ),
-                      Text(
-                        '\$2,000.00',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolor2, fontSize: 16),
-                      )
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      MyReusableCard(
-                          cardChild: const Icon(
-                            Icons.real_estate_agent,
-                            color: kBottomBarItemscolor,
-                            size: 60,
-                          ),
-                          colour: kActiveCardColor,
-                          width: 150,
-                          height: 150),
-                      Text(
-                        'Loan',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolorwhite, fontSize: 16),
-                      ),
-                      Text(
-                        '\$1,000.00',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolor2, fontSize: 16),
-                      )
-                    ],
-                  ),
-                ],
-              ),
               const SizedBox(
-                height: 30,
+                height: 20,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Column(
-                    children: [
-                      MyReusableCard(
-                          cardChild: const Icon(
-                            FontAwesomeIcons.sackDollar,
-                            color: kBottomBarItemscolor,
-                            size: 60,
-                          ),
-                          colour: kActiveCardColor,
-                          width: 150,
-                          height: 150),
-                      Text(
-                        'Investment',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolorwhite, fontSize: 16),
-                      ),
-                      Text(
-                        '\$1,500.00',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolor2, fontSize: 16),
-                      )
-                    ],
+              Container(
+                decoration: kContainerDeco,
+                margin: EdgeInsets.symmetric(horizontal: 10),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 15, left: 20, bottom: 15),
+                  child: Text(
+                    'What are you looking for?',
+                    style: GoogleFonts.oswald(
+                        color: kmonochromcolorwhite, fontSize: 20),
+                    textAlign: TextAlign.left,
                   ),
-                  Column(
-                    children: [
-                      MyReusableCard(
-                          cardChild: const Icon(
-                            Icons.emergency,
-                            color: kBottomBarItemscolor,
-                            size: 60,
-                          ),
-                          colour: kActiveCardColor,
-                          width: 150,
-                          height: 150),
-                      Text(
-                        'Emergency account',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolorwhite, fontSize: 16),
-                      ),
-                      Text(
-                        '\$500.00',
-                        style: GoogleFonts.oswald(
-                            color: kmonochromcolor2, fontSize: 16),
-                      )
-                    ],
-                  ),
-                ],
+                ),
               ),
+              const SimpleCardListTile(
+                  avatarColor: kBottomBarItemscolor,
+                  cardColor: kActiveCardColor,
+                  textColor: kmonochromcolorwhite,
+                  subTextColor: kmonochromcolor2,
+                  avatarChild: Icon(
+                    FontAwesomeIcons.buildingColumns,
+                  ),
+                  text: 'Investments',
+                  subText:
+                      'By yourself or with a little help from our experts'),
+              const SimpleCardListTile(
+                  avatarColor: kBottomBarItemscolor,
+                  cardColor: kActiveCardColor,
+                  textColor: kmonochromcolorwhite,
+                  subTextColor: kmonochromcolor2,
+                  avatarChild: Icon(Icons.real_estate_agent),
+                  text: 'Lend out',
+                  subText: 'Make money by helping others'),
+              const SimpleCardListTile(
+                  avatarColor: kBottomBarItemscolor,
+                  cardColor: kActiveCardColor,
+                  textColor: kmonochromcolorwhite,
+                  subTextColor: kmonochromcolor2,
+                  avatarChild: Icon(FontAwesomeIcons.hands),
+                  text: 'Loan',
+                  subText: 'Get loan for your project with little interest'),
+              const SimpleCardListTile(
+                  avatarColor: kBottomBarItemscolor,
+                  cardColor: kActiveCardColor,
+                  textColor: kmonochromcolorwhite,
+                  subTextColor: kmonochromcolor2,
+                  avatarChild: Icon(Icons.savings),
+                  text: 'Saving',
+                  subText: 'A buffer for unforseen situations'),
+              const SimpleCardListTile(
+                  avatarColor: kBottomBarItemscolor,
+                  cardColor: kActiveCardColor,
+                  textColor: kmonochromcolorwhite,
+                  subTextColor: kmonochromcolor2,
+                  avatarChild: Icon(FontAwesomeIcons.personCane),
+                  text: 'Pension',
+                  subText: 'To fully enjoy life later on'),
+              const SimpleCardListTile(
+                  avatarColor: kBottomBarItemscolor,
+                  cardColor: kActiveCardColor,
+                  textColor: kmonochromcolorwhite,
+                  subTextColor: kmonochromcolor2,
+                  avatarChild: Icon(
+                    FontAwesomeIcons.houseCircleCheck,
+                    size: 18,
+                  ),
+                  text: 'Mortgage',
+                  subText: 'Make room for your dream'),
             ],
           ),
         ],

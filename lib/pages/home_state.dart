@@ -7,7 +7,7 @@ import 'package:voom/pages/spaces_page.dart';
 import '../widgets/drawer_listTile.dart';
 import 'package:voom/widgets/logout_list_tile.dart';
 import 'package:flutter/material.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -24,7 +24,6 @@ class _HomeStateState extends State<HomeState> {
   final List _screens = [
     const HomeScreen(),
     const CardPage(),
-    const SendPage(),
     const SpacesPage(),
     const ProfilePage(),
   ];
@@ -59,16 +58,17 @@ class _HomeStateState extends State<HomeState> {
             ),
             label: 'Card',
           ),
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: kSendFABcolor,
-              child: Icon(
-                Icons.call_made,
-                // color: kmoochromcolorwhite,
-              ),
-            ),
-            label: 'Send',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: CircleAvatar(
+          //     backgroundColor: kSendFABcolor,
+          //     child: Icon(
+          //       FontAwesomeIcons.paperPlane,
+          //       size: 18,
+          //       color: kmonochromcolor1,
+          //     ),
+          //   ),
+          //   label: 'Send',
+          // ),
           BottomNavigationBarItem(
             tooltip: 'View products',
             icon: Icon(

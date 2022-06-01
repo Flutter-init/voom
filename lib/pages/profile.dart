@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
 
 import '../widgets/m_list_tile.dart';
 
@@ -103,30 +103,51 @@ class ProfilePage extends StatelessWidget {
               MListTile(
                 iconData: Icons.settings,
                 text: 'General settings',
+                onPress: () {
+                  //do something
+                },
               ),
               MListTile(
                 iconData: Icons.account_balance,
                 text: 'Account details',
+                onPress: () {
+                  //do something
+                },
               ),
               MListTile(
                 iconData: Icons.calendar_month,
                 text: 'Scheduled transfers',
+                onPress: () {
+                  //do something
+                },
               ),
               MListTile(
                 iconData: Icons.fax,
                 text: 'Receive by email or phone',
+                onPress: () {
+                  //do something
+                },
               ),
               MListTile(
                 iconData: Icons.menu_book,
                 text: 'Statement of account',
+                onPress: () {
+                  //do something
+                },
               ),
               MListTile(
                 iconData: Icons.route,
                 text: 'Automatic currency conversion',
+                onPress: () {
+                  //do something
+                },
               ),
               MListTile(
                 iconData: Icons.line_weight,
                 text: 'Account limits',
+                onPress: () {
+                  //do something
+                },
               ),
             ],
           ),

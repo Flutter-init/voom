@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
 
 class myCircleAvatar extends StatelessWidget {
   late final double circleRadius;

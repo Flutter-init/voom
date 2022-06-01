@@ -1,9 +1,12 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/widgets/icon_content.dart';
-import 'package:voom/widgets/my_card.dart';
+import 'package:voom/pages/send_page.dart';
+
 import 'package:flutter/material.dart';
-import 'package:voom/constants.dart';
+import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../widgets/column_circleAvatar_text.dart';
+import '../widgets/myListTileCard.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String id = '/homescreen';
@@ -16,65 +19,29 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _controller = ScrollController();
 
-  final countryData = {
-    "Euro": Icons.euro,
-    "US Dollar": Icons.attach_money,
-    "British Pound": Icons.currency_pound,
-    "Canadian Dollar": FontAwesomeIcons.canadianMapleLeaf,
-    "Chinese Yuan": Icons.currency_yuan,
-    "Austrailian Dollar": FontAwesomeIcons.australSign,
-    "Indian Rupee": Icons.currency_rupee,
-    "Nigerian Naira": FontAwesomeIcons.nairaSign,
-  };
-
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     const numItems = 20;
 
     Widget _buildRow() {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+        children: const [
+          MyListTileCard(
+            subTextColor: kmonochromcolor2,
+            cardColor: kInactiveCardColor,
+            textColor: kmonochromcolorwhite,
+            avatarColor: kBottomBarItemscolor,
+            header: '01 July 2022',
+            text: 'Purchased XBox at Amazon',
+            avatarChild: Icon(
+              Icons.credit_card,
+            ),
+            subText: 'Spent',
+            trailing: "\$30.00",
+          ),
           Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Text(
-              '29 May 2022',
-              style:
-                  GoogleFonts.oswald(color: kmonochromcolorwhite, fontSize: 14),
-            ),
-          ),
-          MyReusableCard(
-            height: 100,
-            width: width / 2,
-            colour: kInactiveCardColor,
-            cardChild: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: ListTile(
-                leading: const Icon(
-                  Icons.credit_card,
-                  color: kmonochromcolorwhite,
-                ),
-                title: Text(
-                  'Bought Fufu at beans up joint',
-                  style: GoogleFonts.oswald(
-                      color: kmonochromcolorwhite, fontSize: 15.0),
-                ),
-                subtitle: Text(
-                  'Spent',
-                  style: GoogleFonts.oswald(
-                      color: kmonochromcolor2, fontSize: 14.0),
-                ),
-                trailing: Text(
-                  '\$ 20.0',
-                  style: GoogleFonts.oswald(
-                      color: kmonochromcolorwhite, fontSize: 15.0),
-                ),
-              ),
-            ),
-          ),
-          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Divider(
               color: kmonochromcolorwhite,
@@ -89,44 +56,80 @@ class _HomeScreenState extends State<HomeScreen> {
       body: ListView(
         children: [
           Column(
-            // mainAxisAlignment: Main,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MyReusableCard(
-                      height: 150,
-                      width: 150,
-                      colour: kActiveCardColor,
-                      cardChild: IconContent(
-                        cardIcons: countryData['Nigerian Naira'],
-                        cardText1: '200 000',
-                        cardText2: 'Naira',
-                      ),
+                    MColumnCircleNText(
+                      onPress: () {
+                        Navigator.pushNamed(context, SendPage.id);
+                      },
+                      iconData: FontAwesomeIcons.arrowUpRightFromSquare,
+                      text: 'Send',
                     ),
-                    MyReusableCard(
-                      height: 150,
-                      width: 150,
-                      colour: kActiveCardColor,
-                      cardChild: IconContent(
-                        cardIcons: countryData['Euro'],
-                        cardText1: '2000',
-                        cardText2: 'Euro',
-                      ),
+                    MColumnCircleNText(
+                      iconData: FontAwesomeIcons.download,
+                      text: 'Request',
                     ),
-                    MyReusableCard(
-                      height: 150,
-                      width: 150,
-                      colour: kActiveCardColor,
-                      cardChild: IconContent(
-                        cardIcons: FontAwesomeIcons.plus,
-                        cardText2: 'Add a currency',
+                    MColumnCircleNText(
+                      iconData: FontAwesomeIcons.moneyBillTrendUp,
+                      text: 'Invest',
+                    ),
+                    MColumnCircleNText(
+                      iconData: FontAwesomeIcons.hands,
+                      text: 'Loan',
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Total balance',
+                      style: GoogleFonts.oswald(
+                          fontSize: 20, color: kmonochromcolorwhite),
+                    ),
+                    TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: kActiveCardColor,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(25),
+                          ),
+                        ),
+                      ),
+                      onPressed: () {
+                        //do something
+                      },
+                      child: Text(
+                        '\$5000.00',
+                        style: GoogleFonts.oswald(
+                            fontSize: 16, color: kmonochromcolorwhite),
                       ),
                     ),
                   ],
                 ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: Divider(
+                  color: kmonochromcolorwhite,
+                ),
+              ),
+              const MyListTileCard(
+                header: 'Financial Overview',
+                text: 'Voom savings account',
+                avatarChild: Image(
+                  image: AssetImage('images/logo.png'),
+                ),
+                subText: 'BE 2546 2321 3447\nDon Scotus',
+                trailing: "\$3000.00",
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -134,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 15.0, bottom: 20.0, top: 20.0),
+                          left: 15.0, bottom: 20.0, top: 10.0),
                       child: Text(
                         'All activities',
                         style: GoogleFonts.oswald(
