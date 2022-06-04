@@ -1,8 +1,10 @@
 import 'package:google_fonts/google_fonts.dart';
+import 'package:voom/model/new_test.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
+import 'package:voom/pages/onboarding_page.dart';
 import 'package:voom/pages/profile.dart';
-import 'package:voom/pages/send_page.dart';
+
 import 'package:voom/pages/spaces_page.dart';
 import '../widgets/drawer_listTile.dart';
 import 'package:voom/widgets/logout_list_tile.dart';
@@ -10,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'login_screen.dart';
 
 class HomeState extends StatefulWidget {
   static const String id = '/';
@@ -58,17 +62,7 @@ class _HomeStateState extends State<HomeState> {
             ),
             label: 'Card',
           ),
-          // BottomNavigationBarItem(
-          //   icon: CircleAvatar(
-          //     backgroundColor: kSendFABcolor,
-          //     child: Icon(
-          //       FontAwesomeIcons.paperPlane,
-          //       size: 18,
-          //       color: kmonochromcolor1,
-          //     ),
-          //   ),
-          //   label: 'Send',
-          // ),
+          
           BottomNavigationBarItem(
             tooltip: 'View products',
             icon: Icon(
@@ -121,12 +115,16 @@ class _HomeStateState extends State<HomeState> {
             ),
             DrawerListTile(
               txt: 'Invite a friend',
-              onPress: () {},
+              onPress: () {
+                Navigator.pushNamed(context, OnboardingPage.id);
+              },
               icon: Icons.outgoing_mail,
             ),
             DrawerListTile(
               txt: 'Rate us',
-              onPress: () {},
+              onPress: () {
+                //do something
+              },
               icon: Icons.thumbs_up_down_sharp,
             ),
             DrawerListTile(
@@ -143,7 +141,7 @@ class _HomeStateState extends State<HomeState> {
                   iconData: FontAwesomeIcons.arrowRightFromBracket,
                   text: 'Logout',
                   onPress: () {
-                    // Navigator.pushNamed(context, LoginScreen.id);
+                    Navigator.pushNamed(context, LoginScreen.id);
                   }),
             )
           ],
