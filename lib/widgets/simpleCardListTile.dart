@@ -14,6 +14,7 @@ class SimpleCardListTile extends StatelessWidget {
   final Color textColor;
   final Color subTextColor;
   final Color avatarColor;
+
   const SimpleCardListTile(
       {this.header = '',
       required this.avatarChild,
@@ -34,7 +35,7 @@ class SimpleCardListTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        elevation: 6,
+        elevation: 0,
         color: cardColor,
         child: ListTile(
           onTap: () {

@@ -8,7 +8,7 @@ class MColumnCircleNText extends StatelessWidget {
   final Color avatarColor;
   final String text;
   final VoidCallback? onPress;
-  const MColumnCircleNText(
+  MColumnCircleNText(
       {this.avatarColor = kActiveCardColor,
       this.iconColor = kBottomBarItemscolor,
       required this.iconData,

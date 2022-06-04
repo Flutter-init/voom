@@ -1,11 +1,13 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/pages/send_page.dart';
 
 import 'package:flutter/material.dart';
+import 'package:voom/pages/local_transfer.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../widgets/bottomSheet_listTile.dart';
 import '../widgets/column_circleAvatar_text.dart';
+
 import '../widgets/myListTileCard.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +24,60 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    const numItems = 20;
+    const numItems = 5;
+
+    Container _buildContainer(BuildContext context) {
+      return Container(
+        height: 300,
+        padding: const EdgeInsets.all(8.0),
+        child: ListView(
+          children: <Widget>[
+            BottomSheetListTile(
+              title: 'Local transfer',
+              subtitle: 'Standard, scheduled or real-time transfer',
+              iconData: Icons.output,
+              avaColor: kActiveCardColor,
+              iconColor: kmonochromcolorwhite,
+              onPress: () {
+                Navigator.pop(context);
+              },
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
+                color: kmonochromcolorBlack,
+              ),
+            ),
+            BottomSheetListTile(
+              title: 'Standing orders',
+              subtitle: 'Carryout the same transfer on a periodic basis',
+              iconData: Icons.pending_actions,
+              avaColor: kActiveCardColor,
+              iconColor: kmonochromcolorwhite,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
+                color: kmonochromcolorBlack,
+              ),
+            ),
+            BottomSheetListTile(
+              title: 'International transfer',
+              subtitle: 'Standard, scheduled or real-time transfer',
+              iconData: Icons.language,
+              avaColor: kActiveCardColor,
+              iconColor: kmonochromcolorwhite,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Divider(
+                color: kmonochromcolorBlack,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
     Widget _buildRow() {
       return Column(
@@ -65,7 +120,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     MColumnCircleNText(
                       onPress: () {
-                        Navigator.pushNamed(context, SendPage.id);
+                        showModalBottomSheet(
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(15),
+                              topRight: Radius.circular(15),
+                            ),
+                          ),
+                          backgroundColor: kmonochromcolorwhite,
+                          context: context,
+                          builder: (ctx) => _buildContainer(ctx),
+                        );
                       },
                       iconData: FontAwesomeIcons.arrowUpRightFromSquare,
                       text: 'Send',
