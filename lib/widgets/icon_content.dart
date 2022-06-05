@@ -29,14 +29,14 @@ class IconContent extends StatelessWidget {
             child: Text(
               cardText1,
               style:
-                  GoogleFonts.oswald(fontSize: 20, color: kmonochromcolorwhite),
+                  GoogleFonts.poppins(fontSize: 20, color: kmonochromcolorwhite),
             ),
             // height: 15.0,
           ),
         ),
         Text(
           cardText2,
-          style: GoogleFonts.oswald(fontSize: 15, color: kmonochromcolor2),
+          style: GoogleFonts.poppins(fontSize: 15, color: kmonochromcolor2),
         ),
       ],
     );

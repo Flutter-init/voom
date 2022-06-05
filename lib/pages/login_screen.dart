@@ -48,7 +48,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Text(
                   'Voom',
-                  style: GoogleFonts.oswald(
+                  style: GoogleFonts.poppins(
                       color: kmonochromcolorwhite, fontSize: 40),
                   textAlign: TextAlign.center,
                 ),
@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                   child: Text(
                     'LOG IN',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.oswald(
+                    style: GoogleFonts.poppins(
                         color: kmonochromcolorwhite, fontSize: 20),
                   ),
                 ),
@@ -84,7 +84,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Text(
                   'Or',
-                  style: GoogleFonts.oswald(
+                  style: GoogleFonts.poppins(
                       color: kmonochromcolorwhite, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
@@ -106,7 +106,7 @@ class LoginScreen extends StatelessWidget {
                 myLoginButton(
                   mtext: 'Login',
                   onPress: () {
-                    Navigator.pushNamed(context, HomeState.id);
+                    Navigator.popAndPushNamed(context, HomeState.id);
                   },
                 ),
                 Row(
@@ -114,17 +114,17 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Text(
                       'Don\'t have an account yet?',
-                      style: GoogleFonts.oswald(
+                      style: GoogleFonts.poppins(
                           color: kmonochromcolorwhite, fontSize: 15),
                     ),
                     TextButton(
                       child: Text(
                         'Join',
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.poppins(
                             color: kBottomBarItemscolor, fontSize: 15),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, RegistrationScreen.id);
+                        Navigator.popAndPushNamed(context, RegistrationScreen.id);
                         //do something
                       },
                     ),
@@ -141,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                     },
                     child: Text(
                       'Forgot password?',
-                      style: GoogleFonts.oswald(
+                      style: GoogleFonts.poppins(
                           color: kBottomBarItemscolor, fontSize: 15),
                       textAlign: TextAlign.center,
                     ),

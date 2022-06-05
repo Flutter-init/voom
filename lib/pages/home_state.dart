@@ -83,7 +83,7 @@ class _HomeStateState extends State<HomeState> {
         selectedItemColor: kBottomBarItemscolor,
         unselectedItemColor: kmonochromcolorwhite,
         selectedLabelStyle:
-            GoogleFonts.oswald(fontSize: 14, color: kmonochromcolorwhite),
+            GoogleFonts.poppins(fontSize: 14, color: kmonochromcolorwhite),
         onTap: _onItemTapped,
       ),
       drawer: Drawer(
@@ -98,7 +98,7 @@ class _HomeStateState extends State<HomeState> {
             DrawerListTile(
               txt: 'Home',
               onPress: () {
-                Navigator.pushReplacementNamed(context, HomeState.id);
+                Navigator.popAndPushNamed(context, HomeState.id);
               },
               icon: Icons.cottage,
             ),
@@ -140,7 +140,7 @@ class _HomeStateState extends State<HomeState> {
                   iconData: FontAwesomeIcons.arrowRightFromBracket,
                   text: 'Logout',
                   onPress: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
+                    Navigator.popAndPushNamed(context, LoginScreen.id);
                   }),
             )
           ],

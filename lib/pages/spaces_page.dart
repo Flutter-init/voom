@@ -36,8 +36,8 @@ class _SpacesPageState extends State<SpacesPage> {
                 centerTitle: false,
                 title: Text(
                   'What are you looking for?',
-                  style: GoogleFonts.oswald(
-                      color: kmonochromcolorwhite, fontSize: 18.0),
+                  style: GoogleFonts.poppins(
+                      color: kmonochromcolorwhite, fontSize: 17.0),
                 ),
               ),
             ),
@@ -102,6 +102,14 @@ class _SpacesPageState extends State<SpacesPage> {
                       ),
                       text: 'Mortgage',
                       subText: 'Make room for your dream'),
+                  const SimpleCardListTile(
+                      avatarColor: kBottomBarItemscolor,
+                      cardColor: kActiveCardColor,
+                      textColor: kmonochromcolorwhite,
+                      subTextColor: kmonochromcolor2,
+                      avatarChild: Icon(FontAwesomeIcons.magnifyingGlassDollar),
+                      text: 'Discover more',
+                      subText: 'Search for interesting monetery opportunities'),
                 ],
               ),
             ),

@@ -66,7 +66,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 Text(
                   'Voom',
-                  style: GoogleFonts.oswald(
+                  style: GoogleFonts.poppins(
                       color: kmonochromcolorwhite, fontSize: 40),
                   textAlign: TextAlign.center,
                 ),
@@ -75,7 +75,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   child: Text(
                     'SIGN UP',
                     textAlign: TextAlign.center,
-                    style: GoogleFonts.oswald(
+                    style: GoogleFonts.poppins(
                         color: kmonochromcolorwhite, fontSize: 20),
                   ),
                 ),
@@ -102,19 +102,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 ),
                 Text(
                   'Or',
-                  style: GoogleFonts.oswald(
+                  style: GoogleFonts.poppins(
                       color: kmonochromcolorwhite, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
                 myTextFieldWidget(
-                  hinText: 'User name',
+                  hinText: 'Full name',
                   iconData: FontAwesomeIcons.user,
                   textInputType: TextInputType.name,
                 ),
                 myTextFieldWidget(
-                  hinText: 'Email',
+                  hinText: 'Email address',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
+                ),
+                myTextFieldWidget(
+                  hinText: 'Phone number',
+                  iconData: Icons.phone,
+                  textInputType: TextInputType.phone,
+                ),
+                myTextFieldWidget(
+                  hinText: 'Date of birth',
+                  iconData: FontAwesomeIcons.cakeCandles,
+                  textInputType: TextInputType.number,
                 ),
                 myTextFieldWidget(
                   suffixIcon: Icons.visibility,
@@ -137,8 +147,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         }),
                     Text(
                       'By signing up, you agree to the ',
-                      style: GoogleFonts.oswald(
-                          color: kmonochromcolorwhite, fontSize: 13),
+                      style: GoogleFonts.poppins(
+                          color: kmonochromcolorwhite, fontSize: 10),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -151,14 +161,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       },
                       child: Text(
                         'Privacy Policy ',
-                        style: GoogleFonts.oswald(
-                            color: kBottomBarItemscolor, fontSize: 13),
+                        style: GoogleFonts.poppins(
+                            color: kBottomBarItemscolor, fontSize: 10),
                       ),
                     ),
                     Text(
                       'and ',
-                      style: GoogleFonts.oswald(
-                          color: kmonochromcolorwhite, fontSize: 13),
+                      style: GoogleFonts.poppins(
+                          color: kmonochromcolorwhite, fontSize: 10),
                     ),
                     TextButton(
                       style: TextButton.styleFrom(
@@ -171,8 +181,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       },
                       child: Text(
                         'Terms of Service',
-                        style: GoogleFonts.oswald(
-                            color: kBottomBarItemscolor, fontSize: 13),
+                        style: GoogleFonts.poppins(
+                            color: kBottomBarItemscolor, fontSize: 10),
                       ),
                     ),
                   ],
@@ -180,7 +190,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 myLoginButton(
                   mtext: 'Sign up',
                   onPress: () {
-                    Navigator.pushNamed(context, HomeState.id);
+                    Navigator.popAndPushNamed(context, HomeState.id);
                   },
                 ),
                 Row(
@@ -188,17 +198,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   children: [
                     Text(
                       'Already joined?',
-                      style: GoogleFonts.oswald(
+                      style: GoogleFonts.poppins(
                           color: kmonochromcolorwhite, fontSize: 15),
                     ),
                     TextButton(
                       child: Text(
                         'Login',
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.poppins(
                             color: kBottomBarItemscolor, fontSize: 15),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, LoginScreen.id);
+                        Navigator.popAndPushNamed(context, LoginScreen.id);
                         //do something
                       },
                     ),

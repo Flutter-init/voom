@@ -9,6 +9,7 @@ import 'package:voom/pages/profile.dart';
 import 'package:voom/pages/registration_screen.dart';
 
 import 'package:voom/pages/spaces_page.dart';
+import 'package:voom/pages/success_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         LoginScreen.id: (context) => const LoginScreen(),
         RegistrationScreen.id: (context) => const RegistrationScreen(),
         OnboardingPage.id: (context) => OnboardingPage(),
+        SuccessSendPage.id:(context) => const SuccessSendPage(),
       },
     );
   }

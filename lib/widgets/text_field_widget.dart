@@ -24,10 +24,10 @@ class myTextFieldWidget extends StatelessWidget {
       child: TextField(
         obscureText: obscureText,
         keyboardType: textInputType,
-        style: GoogleFonts.oswald(color: kmonochromcolorwhite),
+        style: GoogleFonts.poppins(color: kmonochromcolorwhite),
         decoration: InputDecoration(
           hintText: hinText,
-          hintStyle: GoogleFonts.oswald(color: kmonochromcolorwhite),
+          hintStyle: GoogleFonts.poppins(color: kmonochromcolorwhite),
           prefixIcon: Icon(
             iconData,
             color: kmonochromcolor2,

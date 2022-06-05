@@ -45,7 +45,7 @@ class _CardPageState extends State<CardPage> {
                     child: Text(
                       'Manage card',
                       textAlign: TextAlign.left,
-                      style: GoogleFonts.oswald(
+                      style: GoogleFonts.poppins(
                           color: kmonochromcolor2, fontSize: 16),
                     ),
                   ),

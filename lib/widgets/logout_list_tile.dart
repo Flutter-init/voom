@@ -60,7 +60,7 @@ class MListTileNoPadding extends StatelessWidget {
           Text(
             text,
             style:
-                GoogleFonts.oswald(fontSize: 14, color: kmonochromcolorwhite),
+                GoogleFonts.poppins(fontSize: 14, color: kmonochromcolorwhite),
           )
         ],
       ),

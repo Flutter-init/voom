@@ -25,10 +25,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bodyStyle = GoogleFonts.oswald(fontSize: 20, color: kmonochromcolor2);
+    final bodyStyle = GoogleFonts.poppins(fontSize: 20, color: kmonochromcolor2);
 
     final pageDecoration = PageDecoration(
-      titleTextStyle: GoogleFonts.oswald(
+      titleTextStyle: GoogleFonts.poppins(
           fontSize: 28,
           color: kmonochromcolorwhite,
           fontWeight: FontWeight.w700),
@@ -56,7 +56,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
           child: Text(
             'Let\'s go right away!',
             style:
-                GoogleFonts.oswald(color: kmonochromcolorBlack, fontSize: 18),
+                GoogleFonts.poppins(color: kmonochromcolorBlack, fontSize: 18),
           ),
           onPressed: () => _onIntroEnd(context),
         ),
@@ -101,7 +101,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
       ),
       done: Text(
         'Done',
-        style: GoogleFonts.oswald(color: kmonochromcolorwhite, fontSize: 16),
+        style: GoogleFonts.poppins(color: kmonochromcolorwhite, fontSize: 16),
       ),
       curve: Curves.fastLinearToSlowEaseIn,
       controlsMargin: const EdgeInsets.all(16),

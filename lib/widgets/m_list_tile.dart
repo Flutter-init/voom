@@ -20,7 +20,7 @@ class MListTile extends StatelessWidget {
       ),
       title: Text(
         text,
-        style: GoogleFonts.oswald(color: kmonochromcolorwhite, fontSize: 18),
+        style: GoogleFonts.poppins(color: kmonochromcolorwhite, fontSize: 18),
       ),
       onTap: onPress,
     );

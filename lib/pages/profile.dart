@@ -62,7 +62,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       Text(
                         'Don Scotus',
                         textAlign: TextAlign.center,
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.poppins(
                             color: kmonochromcolorwhite, fontSize: 20),
                       ),
                       Padding(
@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           children: [
                             Text(
                               'Invite your friends',
-                              style: GoogleFonts.oswald(
+                              style: GoogleFonts.poppins(
                                   color: kmonochromcolorwhite, fontSize: 14),
                             ),
                             TextButton(
@@ -87,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               },
                               child: Text(
                                 'Copy link',
-                                style: GoogleFonts.oswald(
+                                style: GoogleFonts.poppins(
                                     color: kBottomBarItemscolor, fontSize: 14),
                               ),
                             )
@@ -102,7 +102,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       ListTile(
-                        isThreeLine: true,
+                        // isThreeLine: true,
                         leading: const Icon(
                           FontAwesomeIcons.gift,
                           color: kBottomBarItemscolor,
@@ -111,14 +111,14 @@ class _ProfilePageState extends State<ProfilePage> {
                         title: Padding(
                           padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
-                            'Invite and earn 20 EUR',
-                            style: GoogleFonts.oswald(
+                            'Invite and earn \$20',
+                            style: GoogleFonts.poppins(
                                 color: kmonochromcolorwhite, fontSize: 18.0),
                           ),
                         ),
                         subtitle: Text(
-                          'For every 2 friends who transfer over 200 EUR.',
-                          style: GoogleFonts.oswald(
+                          'For every 2 friends who transfer over \$200.',
+                          style: GoogleFonts.poppins(
                               color: kmonochromcolor2, fontSize: 16.0),
                         ),
                       ),
@@ -126,7 +126,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         padding: const EdgeInsets.only(top: 50.0, left: 10.0),
                         child: Text(
                           'Account services',
-                          style: GoogleFonts.oswald(
+                          style: GoogleFonts.poppins(
                               color: kmonochromcolorwhite, fontSize: 16.0),
                         ),
                       ),

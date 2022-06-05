@@ -15,7 +15,7 @@ class DrawerListTile extends StatelessWidget {
     return ListTile(
         title: Text(
           txt,
-          style: GoogleFonts.oswald(fontSize: 14, color: kmonochromcolorwhite),
+          style: GoogleFonts.poppins(fontSize: 14, color: kmonochromcolorwhite),
         ),
         leading: Icon(
           icon,

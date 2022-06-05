@@ -38,7 +38,7 @@ class MColumnCircleNText extends StatelessWidget {
           child: Text(
             text,
             style:
-                GoogleFonts.oswald(color: kmonochromcolorwhite, fontSize: 16),
+                GoogleFonts.poppins(color: kmonochromcolorwhite, fontSize: 16),
           ),
         )
       ],

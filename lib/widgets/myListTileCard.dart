@@ -44,28 +44,28 @@ class MyListTileCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10, left: 20, bottom: 5),
               child: Text(
                 header,
-                style: GoogleFonts.oswald(fontSize: 18, color: textColor),
+                style: GoogleFonts.poppins(fontSize: 18, color: textColor),
               ),
             ),
             ListTile(
               onTap: () {
                 //do something
               },
-              isThreeLine: true,
+              // isThreeLine: true,
               leading: CircleAvatar(
                   backgroundColor: avatarColor, child: avatarChild),
               title: Text(
                 text,
-                style: GoogleFonts.oswald(fontSize: 16, color: textColor),
+                style: GoogleFonts.poppins(fontSize: 16, color: textColor),
               ),
               subtitle: Text(
                 subText,
                 // 'BE 2546 2321 3447\nDon Scotus',
-                style: GoogleFonts.oswald(fontSize: 16, color: subTextColor),
+                style: GoogleFonts.poppins(fontSize: 16, color: subTextColor),
               ),
               trailing: Text(
                 trailing,
-                style: GoogleFonts.oswald(fontSize: 16, color: textColor),
+                style: GoogleFonts.poppins(fontSize: 16, color: textColor),
               ),
             ),
           ],

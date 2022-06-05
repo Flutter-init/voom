@@ -1,6 +1,8 @@
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
+import 'package:voom/model/requestbottomSheet.dart';
+import 'package:voom/model/sendbottomSheet.dart';
 import 'package:voom/pages/local_transfer.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,59 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     const numItems = 5;
-
-    Container _buildContainer(BuildContext context) {
-      return Container(
-        height: 300,
-        padding: const EdgeInsets.all(8.0),
-        child: ListView(
-          children: <Widget>[
-            BottomSheetListTile(
-              title: 'Local transfer',
-              subtitle: 'Standard, scheduled or real-time transfer',
-              iconData: Icons.output,
-              avaColor: kActiveCardColor,
-              iconColor: kmonochromcolorwhite,
-              onPress: () {
-                Navigator.pop(context);
-              },
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Divider(
-                color: kmonochromcolorBlack,
-              ),
-            ),
-            BottomSheetListTile(
-              title: 'Standing orders',
-              subtitle: 'Carryout the same transfer on a periodic basis',
-              iconData: Icons.pending_actions,
-              avaColor: kActiveCardColor,
-              iconColor: kmonochromcolorwhite,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Divider(
-                color: kmonochromcolorBlack,
-              ),
-            ),
-            BottomSheetListTile(
-              title: 'International transfer',
-              subtitle: 'Standard, scheduled or real-time transfer',
-              iconData: Icons.language,
-              avaColor: kActiveCardColor,
-              iconColor: kmonochromcolorwhite,
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20),
-              child: Divider(
-                color: kmonochromcolorBlack,
-              ),
-            ),
-          ],
-        ),
-      );
-    }
 
     Widget _buildRow() {
       return Column(
@@ -129,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           backgroundColor: kmonochromcolorwhite,
                           context: context,
-                          builder: (ctx) => _buildContainer(ctx),
+                          builder: (ctx) => BuildSendBottomSheet(contxt: ctx)
+                              .getBottomSheet(),
                         );
                       },
                       iconData: FontAwesomeIcons.arrowUpRightFromSquare,
@@ -138,6 +88,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     MColumnCircleNText(
                       iconData: FontAwesomeIcons.download,
                       text: 'Request',
+                      onPress: () {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (ctx) =>
+                                BuildRequestBottomSheet(contxt: ctx)
+                                    .getBottomSheet(),
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(15),
+                                topRight: Radius.circular(15),
+                              ),
+                            ),
+                            backgroundColor: kmonochromcolorwhite);
+                      },
                     ),
                     MColumnCircleNText(
                       iconData: FontAwesomeIcons.moneyBillTrendUp,
@@ -157,7 +121,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     Text(
                       'Total balance',
-                      style: GoogleFonts.oswald(
+                      style: GoogleFonts.poppins(
                           fontSize: 20, color: kmonochromcolorwhite),
                     ),
                     TextButton(
@@ -174,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       },
                       child: Text(
                         '\$5000.00',
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.poppins(
                             fontSize: 16, color: kmonochromcolorwhite),
                       ),
                     ),
@@ -205,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           left: 15.0, bottom: 20.0, top: 10.0),
                       child: Text(
                         'All activities',
-                        style: GoogleFonts.oswald(
+                        style: GoogleFonts.poppins(
                             fontSize: 25, color: kmonochromcolorwhite),
                       ),
                     ),

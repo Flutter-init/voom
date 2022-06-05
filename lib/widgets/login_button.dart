@@ -15,7 +15,7 @@ class myLoginButton extends StatelessWidget {
       child: TextButton(
         child: Text(
           mtext,
-          style: GoogleFonts.oswald(color: kmonochromcolorBlack, fontSize: 20),
+          style: GoogleFonts.poppins(color: kmonochromcolorBlack, fontSize: 20),
         ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(kBottomBarItemscolor),
