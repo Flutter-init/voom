@@ -24,6 +24,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   late bool isChecked = false;
+  bool _showPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -127,11 +128,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   textInputType: TextInputType.number,
                 ),
                 myTextFieldWidget(
-                  suffixIcon: Icons.visibility,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                    child: Icon(
+                      _showPassword ? Icons.visibility : Icons.visibility_off,
+                      color: kmonochromcolor2,
+                    ),
+                  ),
                   hinText: 'Password',
                   iconData: FontAwesomeIcons.key,
                   textInputType: TextInputType.visiblePassword,
-                  obscureText: true,
+                  obscureText: _showPassword,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

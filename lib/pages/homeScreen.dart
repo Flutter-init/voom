@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Icons.credit_card,
             ),
             subText: 'Spent',
-            trailing: "\$30.00",
+            trailing: "\$30.09",
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
@@ -157,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 avatarChild: Image(
                   image: AssetImage('images/logo.png'),
                 ),
-                subText: 'BE 2546 2321 3447\nDon Scotus',
+                subText: '8300000187\nBarbara Scott',
                 trailing: "\$3000.00",
               ),
               Row(

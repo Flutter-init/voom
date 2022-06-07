@@ -5,14 +5,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class myTextFieldWidget extends StatelessWidget {
   final String hinText;
-  final IconData iconData;
+  final IconData? iconData;
   final TextInputType textInputType;
   final bool obscureText;
-  late final IconData? suffixIcon;
+  late final Widget? suffixIcon;
 
   myTextFieldWidget(
       {required this.hinText,
-      required this.iconData,
+      this.iconData,
       required this.textInputType,
       this.suffixIcon,
       this.obscureText = false});
@@ -32,10 +32,7 @@ class myTextFieldWidget extends StatelessWidget {
             iconData,
             color: kmonochromcolor2,
           ),
-          suffixIcon: Icon(
-            suffixIcon,
-            color: kmonochromcolor2,
-          ),
+          suffixIcon: suffixIcon,
           contentPadding: const EdgeInsets.all(15.0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.0),

@@ -6,6 +6,8 @@ import 'package:voom/utility/constants.dart';
 import 'package:voom/widgets/myListTileCard.dart';
 import 'package:voom/widgets/text_field_widget.dart';
 
+import '../widgets/textFieldNoIcon.dart';
+
 class LocalTransferPage extends StatefulWidget {
   static String id = '/local';
   LocalTransferPage({Key? key}) : super(key: key);
@@ -15,6 +17,20 @@ class LocalTransferPage extends StatefulWidget {
 }
 
 class _LocalTransferPageState extends State<LocalTransferPage> {
+  static const menuItems = <String>[
+    'Savings',
+    'Checking',
+  ];
+
+  final List<DropdownMenuItem<String>> _dropDownMenuItems = menuItems
+      .map(
+        (String value) => DropdownMenuItem<String>(
+          value: value,
+          child: Text(value),
+        ),
+      )
+      .toList();
+  String? _selectedVal;
   bool _isRTSwitchOn = false;
   bool _isTemplateSwitchOn = false;
   @override
@@ -73,8 +89,8 @@ class _LocalTransferPageState extends State<LocalTransferPage> {
             padding: const EdgeInsets.only(left: 10),
             child: Text(
               'Origin account',
-              style:
-                  GoogleFonts.poppins(fontSize: 18, color: kmonochromcolorwhite),
+              style: GoogleFonts.poppins(
+                  fontSize: 18, color: kmonochromcolorwhite),
             ),
           ),
           const MyListTileCard(
@@ -83,7 +99,7 @@ class _LocalTransferPageState extends State<LocalTransferPage> {
             avatarChild: Image(
               image: AssetImage('images/logo.png'),
             ),
-            subText: 'BE 2546 2321 3447\nDon Scotus',
+            subText: '8300000187\nBarbara Scott',
             trailing: "\$3000.00",
           ),
           const Padding(
@@ -96,30 +112,83 @@ class _LocalTransferPageState extends State<LocalTransferPage> {
             padding: const EdgeInsets.only(left: 10, top: 10, bottom: 5),
             child: Text(
               'Beneficiary',
-              style:
-                  GoogleFonts.poppins(fontSize: 18, color: kmonochromcolorwhite),
+              style: GoogleFonts.poppins(fontSize: 18, color: kmonochromcolor2),
             ),
           ),
-          myTextFieldWidget(
-              hinText: "Recipient's name",
-              iconData: Icons.settings_accessibility,
-              textInputType: TextInputType.name),
-          myTextFieldWidget(
-              hinText: 'IBAN',
-              iconData: Icons.pin,
-              textInputType: TextInputType.name),
-          myTextFieldWidget(
-              hinText: 'Amount',
-              iconData: Icons.redeem,
-              textInputType: TextInputType.number),
-          myTextFieldWidget(
-              hinText: 'Reference',
-              iconData: Icons.keyboard,
-              textInputType: TextInputType.text),
-          myTextFieldWidget(
-              hinText: "Recipient's email",
-              iconData: Icons.email,
-              textInputType: TextInputType.emailAddress),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: TextFieldNoIcon(
+              hintext: "Recipient's full name",
+              textInputType: TextInputType.name,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: TextFieldNoIcon(
+              hintext: "ACH routing number",
+              textInputType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: TextFieldNoIcon(
+              hintext: "Account number",
+              textInputType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: Container(
+              decoration: BoxDecoration(
+                border: Border.all(width: 1, color: kmonochromcolor2),
+                color: kInactiveCardColor,
+                borderRadius: BorderRadius.all(Radius.circular(3)),
+              ),
+              child: ListTile(
+                title: Text(
+                  'Account type',
+                  style: GoogleFonts.poppins(color: kmonochromcolorwhite),
+                ),
+                trailing: DropdownButton(
+                  dropdownColor: kAppBarBackgroundColor,
+                  style: GoogleFonts.poppins(
+                      color: kmonochromcolorwhite, fontSize: 16),
+                  value: _selectedVal,
+                  hint: Text(
+                    'Choose',
+                    style: GoogleFonts.poppins(color: kmonochromcolorwhite),
+                  ),
+                  onChanged: (String? newValue) {
+                    if (newValue != null) {
+                      setState(() => _selectedVal = newValue);
+                    }
+                  },
+                  items: _dropDownMenuItems,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: TextFieldNoIcon(
+              hintext: "Amount",
+              textInputType: TextInputType.number,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: TextFieldNoIcon(
+              hintext: "Reference",
+              textInputType: TextInputType.text,
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            child: TextFieldNoIcon(
+              hintext: "Recipient's email address",
+              textInputType: TextInputType.emailAddress,
+            ),
+          ),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Divider(
@@ -162,7 +231,7 @@ class _LocalTransferPageState extends State<LocalTransferPage> {
               children: [
                 Text(
                   'Save as template',
-                  style: GoogleFonts.oswald(
+                  style: GoogleFonts.poppins(
                       fontSize: 16, color: kmonochromcolorwhite),
                 ),
                 Switch(
@@ -179,7 +248,7 @@ class _LocalTransferPageState extends State<LocalTransferPage> {
           ),
           const SizedBox(
             height: 60,
-          )
+          ),
         ],
       ),
     );

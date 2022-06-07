@@ -5,6 +5,7 @@ import 'package:voom/utility/constants.dart';
 import 'package:voom/widgets/bottomSheet_listTile.dart';
 
 import '../pages/local_transfer.dart';
+import 'listTileNoIcon.dart';
 
 class BuildRequestBottomSheet {
   BuildContext contxt;
@@ -20,12 +21,12 @@ class BuildRequestBottomSheet {
         children: <Widget>[
           ListTile(
             title: Text(
-              'Account details',
-              style:
-                  GoogleFonts.poppins(color: kmonochromcolorBlack, fontSize: 18),
+              'USD account details',
+              style: GoogleFonts.poppins(
+                  color: kmonochromcolorBlack, fontSize: 18),
             ),
             subtitle: Text(
-              'United states dollar',
+              'US dollar',
               style: GoogleFonts.poppins(color: kmonochromcolor2, fontSize: 16),
             ),
             leading: CircleAvatar(
@@ -36,7 +37,7 @@ class BuildRequestBottomSheet {
                 radius: 25,
                 child: ClipOval(
                   child: Image(
-                    image: AssetImage('images/logo.png'),
+                    image: AssetImage('images/boy.png'),
                   ),
                 ),
               ),
@@ -55,33 +56,50 @@ class BuildRequestBottomSheet {
               color: kmonochromcolorBlack,
             ),
           ),
-          BottomSheetListTile(
+          ListTileNoIcon(
             title: 'Account holder',
-            subtitle: 'Don Scotus',
-            iconData: FontAwesomeIcons.userAstronaut,
-            avaColor: kActiveCardColor,
-            iconColor: kmonochromcolorwhite,
+            subtitle: 'Barbara Scott',
           ),
-          BottomSheetListTile(
-            title: 'BIC',
-            subtitle: 'VMBSBEB2XXX',
-            iconData: FontAwesomeIcons.barcode,
-            avaColor: kActiveCardColor,
-            iconColor: kmonochromcolorwhite,
+          ListTileNoIcon(
+            title: 'ACH routing number',
+            subtitle: '024444543',
+            trailing: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.help,
+                color: kSendFABcolor,
+              ),
+            ),
           ),
-          BottomSheetListTile(
-            title: 'IBAN',
-            subtitle: 'BE 2546 2321 3447',
-            iconData: FontAwesomeIcons.buildingColumns,
-            avaColor: kActiveCardColor,
-            iconColor: kmonochromcolorwhite,
+          ListTileNoIcon(
+            title: 'Wire routing number',
+            subtitle: '020004543',
+            trailing: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.help,
+                color: kSendFABcolor,
+              ),
+            ),
           ),
-          BottomSheetListTile(
+          ListTileNoIcon(
+            title: 'Account number',
+            subtitle: '8300000187',
+          ),
+          ListTileNoIcon(
+            title: 'Account type',
+            subtitle: 'Checking',
+          ),
+          ListTileNoIcon(
             title: 'Voom\'s address',
-            subtitle: 'Rank One 14\n2142\nBernco Subspace 1\nBencoSpace',
-            iconData: FontAwesomeIcons.mapPin,
-            avaColor: kActiveCardColor,
-            iconColor: kmonochromcolorwhite,
+            subtitle: '260 5th Ave\nNew York City, NY 10001\nUnited States',
+            trailing: IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.help,
+                color: kSendFABcolor,
+              ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -107,3 +125,4 @@ class BuildRequestBottomSheet {
 
   Container getBottomSheet() => _buildContainer(contxt);
 }
+

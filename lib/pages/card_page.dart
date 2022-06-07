@@ -30,7 +30,7 @@ class _CardPageState extends State<CardPage> {
                 cardNumber: '1200 5445 8598 0034',
                 obscureCardNumber: false,
                 expiryDate: '11/22',
-                cardHolderName: 'Don Scotus',
+                cardHolderName: 'Barbara Scott',
                 cvvCode: '234',
                 showBackView: false,
 

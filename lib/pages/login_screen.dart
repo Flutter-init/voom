@@ -13,10 +13,16 @@ import '../widgets/social_media_button.dart';
 import '../widgets/text_field_widget.dart';
 import '../widgets/login_button.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   static const String id = '/login';
   const LoginScreen({Key? key}) : super(key: key);
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _showPassword = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,11 +100,21 @@ class LoginScreen extends StatelessWidget {
                   textInputType: TextInputType.emailAddress,
                 ),
                 myTextFieldWidget(
-                  suffixIcon: Icons.visibility,
+                  suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                    child: Icon(
+                      _showPassword ? Icons.visibility : Icons.visibility_off,
+                      color: kmonochromcolor2,
+                    ),
+                  ),
                   hinText: 'Password',
                   iconData: FontAwesomeIcons.key,
                   textInputType: TextInputType.visiblePassword,
-                  obscureText: true,
+                  obscureText: _showPassword,
                 ),
                 const SizedBox(
                   height: 30.0,
@@ -124,7 +140,8 @@ class LoginScreen extends StatelessWidget {
                             color: kBottomBarItemscolor, fontSize: 15),
                       ),
                       onPressed: () {
-                        Navigator.popAndPushNamed(context, RegistrationScreen.id);
+                        Navigator.popAndPushNamed(
+                            context, RegistrationScreen.id);
                         //do something
                       },
                     ),

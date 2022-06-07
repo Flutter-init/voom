@@ -28,8 +28,8 @@ class SuccessSendPage extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15, top: 8),
             child: Text(
               'Congrats!',
-              style:
-                  GoogleFonts.poppins(fontSize: 40, color: kmonochromcolorwhite),
+              style: GoogleFonts.poppins(
+                  fontSize: 40, color: kmonochromcolorwhite),
             ),
           ),
           Padding(
@@ -52,7 +52,7 @@ class SuccessSendPage extends StatelessWidget {
                       'Transfer details',
                       style: GoogleFonts.poppins(
                           fontSize: 20,
-                          color: kActiveCardColor,
+                          color: kmonochromcolorwhite,
                           fontWeight: FontWeight.w800),
                     ),
                   ),
@@ -93,20 +93,21 @@ class SuccessSendPage extends StatelessWidget {
                       'Recipient',
                       style: GoogleFonts.poppins(
                           fontSize: 20,
-                          color: kActiveCardColor,
+                          color: kmonochromcolorwhite,
                           fontWeight: FontWeight.w800),
                     ),
                   ),
                   BottomSheetListTile(
-                    avaColor: kActiveCardColor,
-                    iconColor: kBottomBarItemscolor,
-                    iconData: FontAwesomeIcons.userAstronaut,
-                    subtitle: 'bernco@voom.com',
-                    title: 'Bernco Voom',
+                    avaColor: kmonochromcolorwhite,
+                    iconColor: kInactiveCardColor,
+                    iconData: FontAwesomeIcons.userInjured,
+                    subtitle: 'jennydivy@mailer.com',
+                    title: 'Jennifer Davis',
+                    titleColor: kmonochromcolorwhite,
                   ),
                 ],
               ),
-              decoration: kContainerDeco.copyWith(color: kmonochromcolorwhite),
+              decoration: kContainerDeco.copyWith(color: kActiveCardColor),
             ),
           ),
           Padding(

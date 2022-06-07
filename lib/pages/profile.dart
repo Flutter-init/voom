@@ -60,7 +60,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Don Scotus',
+                        'Barbara Scott',
                         textAlign: TextAlign.center,
                         style: GoogleFonts.poppins(
                             color: kmonochromcolorwhite, fontSize: 20),
@@ -111,13 +111,13 @@ class _ProfilePageState extends State<ProfilePage> {
                         title: Padding(
                           padding: const EdgeInsets.only(top: 8.0),
                           child: Text(
-                            'Invite and earn \$20',
+                            'Invite and earn 20 USD',
                             style: GoogleFonts.poppins(
                                 color: kmonochromcolorwhite, fontSize: 18.0),
                           ),
                         ),
                         subtitle: Text(
-                          'For every 2 friends who transfer over \$200.',
+                          'For every 2 friends who transfer over 200 USD.',
                           style: GoogleFonts.poppins(
                               color: kmonochromcolor2, fontSize: 16.0),
                         ),
