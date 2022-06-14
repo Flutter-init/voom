@@ -9,12 +9,16 @@ class myTextFieldWidget extends StatelessWidget {
   final TextInputType textInputType;
   final bool obscureText;
   late final Widget? suffixIcon;
+  final TextEditingController? controller;
+  Function(String)? onChange;
 
   myTextFieldWidget(
       {required this.hinText,
       this.iconData,
       required this.textInputType,
       this.suffixIcon,
+      this.onChange,
+      this.controller,
       this.obscureText = false});
 
   @override
@@ -22,6 +26,7 @@ class myTextFieldWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: TextField(
+        controller: controller,
         obscureText: obscureText,
         keyboardType: textInputType,
         style: GoogleFonts.poppins(color: kmonochromcolorwhite),
@@ -44,9 +49,7 @@ class myTextFieldWidget extends StatelessWidget {
             borderSide: BorderSide(color: kmonochromcolor2),
           ),
         ),
-        onChanged: (value) {
-          // do something
-        },
+        onChanged: onChange,
       ),
     );
   }

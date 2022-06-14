@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
@@ -7,6 +8,7 @@ import 'package:voom/pages/login_screen.dart';
 import 'package:voom/pages/onboarding_page.dart';
 import 'package:voom/pages/profile.dart';
 import 'package:voom/pages/registration_screen.dart';
+import 'package:voom/pages/settingsPage.dart';
 
 import 'package:voom/pages/spaces_page.dart';
 import 'package:voom/pages/success_page.dart';
@@ -40,12 +42,13 @@ class MyApp extends StatelessWidget {
         HomeScreen.id: (context) => const HomeScreen(),
         CardPage.id: (context) => const CardPage(),
         ProfilePage.id: (context) => const ProfilePage(),
-        LocalTransferPage.id:(context) => LocalTransferPage(),
+        LocalTransferPage.id: (context) => LocalTransferPage(),
         SpacesPage.id: (context) => const SpacesPage(),
         LoginScreen.id: (context) => const LoginScreen(),
         RegistrationScreen.id: (context) => const RegistrationScreen(),
         OnboardingPage.id: (context) => OnboardingPage(),
-        SuccessSendPage.id:(context) => const SuccessSendPage(),
+        SuccessSendPage.id: (context) => const SuccessSendPage(),
+        SettingsPage.id:(context) => SettingsPage(),
       },
     );
   }

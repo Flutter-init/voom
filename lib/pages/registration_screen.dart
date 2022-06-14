@@ -1,7 +1,8 @@
 import 'package:google_fonts/google_fonts.dart';
 
 import 'home_state.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
@@ -25,6 +26,9 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   late bool isChecked = false;
   bool _showPassword = true;
+  
+  
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -116,6 +120,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   hinText: 'Email address',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
+                  
                 ),
                 myTextFieldWidget(
                   hinText: 'Phone number',
@@ -128,6 +133,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   textInputType: TextInputType.number,
                 ),
                 myTextFieldWidget(
+                  
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -201,7 +207,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 myLoginButton(
                   mtext: 'Sign up',
                   onPress: () {
-                    Navigator.popAndPushNamed(context, HomeState.id);
+                    // Navigator.popAndPushNamed(context, HomeState.id);
                   },
                 ),
                 Row(
