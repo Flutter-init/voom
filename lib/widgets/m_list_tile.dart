@@ -6,11 +6,17 @@ class MListTile extends StatelessWidget {
   final Function()? onPress;
   final IconData iconData;
   final String text;
-  MListTile({this.onPress, required this.iconData, required this.text});
+  final Widget? trailing;
+  MListTile(
+      {this.onPress,
+      required this.iconData,
+      required this.text,
+      this.trailing = null});
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      trailing: trailing,
       leading: CircleAvatar(
         backgroundColor: kActiveCardColor,
         child: Icon(

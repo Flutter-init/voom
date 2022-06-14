@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:voom/pages/settingsPage.dart';
 import 'package:voom/utility/constants.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
 
 import '../widgets/m_list_tile.dart';
 
@@ -14,9 +18,20 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  //TODO: Put this image selected in shared preference
+  File? _imageFile;
+  final _picker = ImagePicker();
+  String invi = 'voom/ref?user?23432';
   final bool _pinned = true;
   final bool _snap = false;
   final bool _floating = false;
+
+  Future<void> _pickImageFromGallery() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() => _imageFile = File(pickedFile.path));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +48,27 @@ class _ProfilePageState extends State<ProfilePage> {
               snap: _snap,
               floating: _floating,
               expandedHeight: 140.0,
-              flexibleSpace: const FlexibleSpaceBar(
+              flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Padding(
                   padding: EdgeInsets.only(top: 8.0),
-                  child: CircleAvatar(
-                    radius: 32,
-                    backgroundColor: kBottomBarItemscolor,
+                  child: InkWell(
+                    splashColor: kActiveCardColor,
+                    onTap: () async => _pickImageFromGallery(),
                     child: CircleAvatar(
-                      radius: 30,
-                      child: ClipOval(
-                        child: Image(
-                          image: AssetImage('images/boy.png'),
+                      radius: 32,
+                      backgroundColor: kBottomBarItemscolor,
+                      child: CircleAvatar(
+                        radius: 30,
+                        child: ClipOval(
+                          child: (_imageFile == null)
+                              ? Image.asset('images/boy.png')
+                              : Image.file(
+                                  _imageFile!,
+                                  fit: BoxFit.fill,
+                                  width: 60,
+                                  height: 60,
+                                ),
                         ),
                       ),
                     ),
@@ -83,7 +107,28 @@ class _ProfilePageState extends State<ProfilePage> {
                                 minimumSize: const Size(0, 0),
                               ),
                               onPressed: () {
-                                //do something
+                                Clipboard.setData(ClipboardData(text: invi))
+                                    .then(
+                                  (value) => ScaffoldMessenger.of(context)
+                                      .showSnackBar(
+                                    SnackBar(
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(10.0),
+                                        ),
+                                      ),
+                                      duration: Duration(seconds: 1),
+                                      backgroundColor: kSendFABcolor,
+                                      content: Text(
+                                        'Copied',
+                                        textAlign: TextAlign.center,
+                                        style: GoogleFonts.poppins(
+                                            color: kmonochromcolorwhite,
+                                            fontSize: 18),
+                                      ),
+                                    ),
+                                  ),
+                                );
                               },
                               child: Text(
                                 'Copy link',
@@ -141,7 +186,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         iconData: Icons.settings,
                         text: 'General settings',
                         onPress: () {
-                          //do something
+                          Navigator.pushNamed(context, SettingsPage.id);
                         },
                       ),
                       MListTile(
