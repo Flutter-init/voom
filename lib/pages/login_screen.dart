@@ -1,6 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/utility/constants.dart';
 
+import '../model/shared_prefs.dart';
 import 'home_state.dart';
 
 import 'registration_screen.dart';
@@ -12,6 +16,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../widgets/social_media_button.dart';
 import '../widgets/text_field_widget.dart';
 import '../widgets/login_button.dart';
+import 'package:voom/utility/message_utils.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = '/login';
@@ -23,6 +28,13 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   bool _showPassword = true;
+
+  final _auth = FirebaseAuth.instance;
+  final _emailCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+
+  bool _logingIn = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,32 +110,44 @@ class _LoginScreenState extends State<LoginScreen> {
                   hinText: 'Email',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
+                  controller: _emailCtrl,
                 ),
                 myTextFieldWidget(
-                  suffixIcon: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _showPassword = !_showPassword;
-                      });
-                    },
-                    child: Icon(
-                      _showPassword ? Icons.visibility : Icons.visibility_off,
-                      color: kmonochromcolor2,
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _showPassword = !_showPassword;
+                        });
+                      },
+                      child: Icon(
+                        _showPassword ? Icons.visibility : Icons.visibility_off,
+                        color: kmonochromcolor2,
+                      ),
                     ),
-                  ),
-                  hinText: 'Password',
-                  iconData: FontAwesomeIcons.key,
-                  textInputType: TextInputType.visiblePassword,
-                  obscureText: _showPassword,
-                ),
+                    hinText: 'Password',
+                    iconData: FontAwesomeIcons.key,
+                    textInputType: TextInputType.visiblePassword,
+                    obscureText: _showPassword,
+                    controller: _passwordCtrl),
                 const SizedBox(
                   height: 30.0,
                 ),
-                myLoginButton(
-                  mtext: 'Login',
-                  onPress: () {
-                    Navigator.popAndPushNamed(context, HomeState.id);
-                  },
+                Container(
+                  child: _logingIn
+                      ? const Center(
+                          child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                  color: Colors.white)),
+                        )
+                      : myLoginButton(
+                          mtext: 'Login',
+                          onPress: () {
+                            _logUserInWithEmailAndPassword(
+                                _emailCtrl.text, _passwordCtrl.text);
+                          },
+                        ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -170,5 +194,32 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _logUserInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      setState(() => _logingIn = true);
+      await _auth
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((uid) => {
+                setSharedPreferences(_emailCtrl.text, _passwordCtrl.text),
+                _emailCtrl.clear(),
+                _passwordCtrl.clear(),
+                Navigator.popAndPushNamed(context, HomeState.id),
+              })
+          .catchError((e) {
+        // Fluttertoast.showToast(msg: e!.message);
+        MessageUtils.voomSnackBarMessage(context, e!.message, 'Dismiss');
+      });
+    } finally {
+      setState(() => _logingIn = false);
+    }
+  }
+
+  setSharedPreferences(String emailAddress, String password) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(
+        SharedPreferencesKeys.email.toString(), emailAddress.toString());
   }
 }
