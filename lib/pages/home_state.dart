@@ -117,7 +117,7 @@ class _HomeStateState extends State<HomeState> {
             DrawerListTile(
               txt: 'Invite a friend',
               onPress: () {
-                Navigator.pushNamed(context, OnboardingPage.id);
+                // Navigator.pushNamed(context, OnboardingPage.id);
               },
               icon: Icons.outgoing_mail,
             ),
