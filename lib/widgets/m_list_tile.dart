@@ -11,7 +11,7 @@ class MListTile extends StatelessWidget {
       {this.onPress,
       required this.iconData,
       required this.text,
-      this.trailing = null});
+      this.trailing});
 
   @override
   Widget build(BuildContext context) {

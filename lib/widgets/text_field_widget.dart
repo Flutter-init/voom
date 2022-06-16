@@ -10,7 +10,7 @@ class myTextFieldWidget extends StatelessWidget {
   final bool obscureText;
   late final Widget? suffixIcon;
 
-  var controller = TextEditingController();
+  // var controller = TextEditingController();
 
   final TextEditingController? controller;
   Function(String)? onChange;
@@ -20,7 +20,7 @@ class myTextFieldWidget extends StatelessWidget {
       {required this.hinText,
       this.iconData,
       required this.textInputType,
-      required this.controller,
+      // required this.controller,
       this.suffixIcon,
       this.onChange,
       this.controller,
@@ -31,7 +31,7 @@ class myTextFieldWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: TextField(
-        controller: controller,
+        // controller: controller,
         obscureText: obscureText,
         keyboardType: textInputType,
         controller: controller,
