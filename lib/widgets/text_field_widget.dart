@@ -9,7 +9,12 @@ class myTextFieldWidget extends StatelessWidget {
   final TextInputType textInputType;
   final bool obscureText;
   late final Widget? suffixIcon;
+
   var controller = TextEditingController();
+
+  final TextEditingController? controller;
+  Function(String)? onChange;
+
 
   myTextFieldWidget(
       {required this.hinText,
@@ -17,6 +22,8 @@ class myTextFieldWidget extends StatelessWidget {
       required this.textInputType,
       required this.controller,
       this.suffixIcon,
+      this.onChange,
+      this.controller,
       this.obscureText = false});
 
   @override
@@ -24,6 +31,7 @@ class myTextFieldWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0, vertical: 10.0),
       child: TextField(
+        controller: controller,
         obscureText: obscureText,
         keyboardType: textInputType,
         controller: controller,
@@ -47,9 +55,7 @@ class myTextFieldWidget extends StatelessWidget {
             borderSide: BorderSide(color: kmonochromcolor2),
           ),
         ),
-        onChanged: (value) {
-          // do something
-        },
+        onChanged: onChange,
       ),
     );
   }

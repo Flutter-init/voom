@@ -5,7 +5,8 @@ import 'package:voom/utility/message_utils.dart';
 
 import '../model/shared_prefs.dart';
 import 'home_state.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
@@ -29,6 +30,9 @@ class RegistrationScreen extends StatefulWidget {
 class _RegistrationScreenState extends State<RegistrationScreen> {
   late bool isChecked = false;
   bool _showPassword = true;
+  
+  
+ 
 
   final _fullNameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
@@ -131,7 +135,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   hinText: 'Email address',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
+
                   controller: _emailCtrl,
+
+                  
+
                 ),
                 myTextFieldWidget(
                   hinText: 'Phone number',
@@ -146,6 +154,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   controller: _dobCtrl,
                 ),
                 myTextFieldWidget(
+                  
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -217,6 +226,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ],
                 ),
+
                 Container(
                   child: _signingUp
                       ? const Center(
@@ -243,6 +253,13 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             }
                           },
                         ),
+// =======
+//                 myLoginButton(
+//                   mtext: 'Sign up',
+//                   onPress: () {
+//                     // Navigator.popAndPushNamed(context, HomeState.id);
+//                   },
+// >>>>>>> master
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

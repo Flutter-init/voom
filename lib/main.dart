@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
@@ -8,11 +9,12 @@ import 'package:voom/pages/login_screen.dart';
 import 'package:voom/pages/onboarding_page.dart';
 import 'package:voom/pages/profile.dart';
 import 'package:voom/pages/registration_screen.dart';
+import 'package:voom/pages/settingsPage.dart';
 
 import 'package:voom/pages/spaces_page.dart';
 import 'package:voom/pages/success_page.dart';
 
-import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
@@ -48,6 +50,10 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.id: (context) => const RegistrationScreen(),
         OnboardingPage.id: (context) => OnboardingPage(),
         SuccessSendPage.id: (context) => const SuccessSendPage(),
+
+
+        SettingsPage.id:(context) => SettingsPage(),
+
       },
     );
   }
