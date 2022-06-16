@@ -1,5 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:voom/utility/message_utils.dart';
 
+import '../model/shared_prefs.dart';
 import 'home_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -29,6 +33,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   
   
  
+
+  final _fullNameCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
+  final _phoneNumberCtrl = TextEditingController();
+  final _dobCtrl = TextEditingController();
+  final _passwordCtrl = TextEditingController();
+
+  final _auth = FirebaseAuth.instance;
+
+  bool _signingUp = false;
 
   @override
   Widget build(BuildContext context) {
@@ -115,22 +129,29 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   hinText: 'Full name',
                   iconData: FontAwesomeIcons.user,
                   textInputType: TextInputType.name,
+                  controller: _fullNameCtrl,
                 ),
                 myTextFieldWidget(
                   hinText: 'Email address',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
+
+                  controller: _emailCtrl,
+
                   
+
                 ),
                 myTextFieldWidget(
                   hinText: 'Phone number',
                   iconData: Icons.phone,
                   textInputType: TextInputType.phone,
+                  controller: _phoneNumberCtrl,
                 ),
                 myTextFieldWidget(
                   hinText: 'Date of birth',
                   iconData: FontAwesomeIcons.cakeCandles,
                   textInputType: TextInputType.number,
+                  controller: _dobCtrl,
                 ),
                 myTextFieldWidget(
                   
@@ -149,6 +170,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   iconData: FontAwesomeIcons.key,
                   textInputType: TextInputType.visiblePassword,
                   obscureText: _showPassword,
+                  controller: _passwordCtrl,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -204,11 +226,40 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ],
                 ),
-                myLoginButton(
-                  mtext: 'Sign up',
-                  onPress: () {
-                    // Navigator.popAndPushNamed(context, HomeState.id);
-                  },
+
+                Container(
+                  child: _signingUp
+                      ? const Center(
+                          child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                  color: Colors.white)),
+                        )
+                      : myLoginButton(
+                          mtext: 'Sign up',
+                          onPress: () {
+                            if (isChecked == false ||
+                                _fullNameCtrl.text == '' ||
+                                _emailCtrl.text == '' ||
+                                _phoneNumberCtrl.text == '' ||
+                                _dobCtrl.text == '' ||
+                                _passwordCtrl.text == '') {
+                              MessageUtils.voomSnackBarMessage(context,
+                                  'Please all field are required', 'OK');
+                            } else {
+                              _signUpWithEmailAndPassword(
+                                  _emailCtrl.text, _passwordCtrl.text);
+                            }
+                          },
+                        ),
+// =======
+//                 myLoginButton(
+//                   mtext: 'Sign up',
+//                   onPress: () {
+//                     // Navigator.popAndPushNamed(context, HomeState.id);
+//                   },
+// >>>>>>> master
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -231,7 +282,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     ),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30.0,
                 ),
               ],
@@ -241,8 +292,43 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       ),
     );
   }
-}
 
+  Future<void> _signUpWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      setState(() => _signingUp = true);
+      await _auth
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) => {
+                setSharedPreferences(_fullNameCtrl.text, _emailCtrl.text,
+                    _phoneNumberCtrl.text, _dobCtrl.text),
+                _emailCtrl.clear(),
+                _passwordCtrl.clear(),
+                _phoneNumberCtrl.clear(),
+                _dobCtrl.clear(),
+                _fullNameCtrl.clear(),
+                Navigator.popAndPushNamed(context, HomeState.id),
+              })
+          .catchError((e) {
+        MessageUtils.voomSnackBarMessage(context, e!.message, 'Dismiss');
+      });
+    } finally {
+      setState(() => _signingUp = false);
+    }
+  }
+
+  setSharedPreferences(String fullName, String emailAddress, String phoneNumber,
+      String dob) async {
+    final prefs = await SharedPreferences.getInstance();
+    prefs.setString(
+        SharedPreferencesKeys.fullName.toString(), fullName.toString());
+    prefs.setString(
+        SharedPreferencesKeys.email.toString(), emailAddress.toString());
+    prefs.setString(
+        SharedPreferencesKeys.phone.toString(), phoneNumber.toString());
+    prefs.setString(SharedPreferencesKeys.dob.toString(), dob.toString());
+  }
+}
 
  // actions: [
         //   IconButton(

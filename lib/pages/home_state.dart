@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
 import 'package:voom/pages/onboarding_page.dart';
 import 'package:voom/pages/profile.dart';
 
 import 'package:voom/pages/spaces_page.dart';
+import '../model/shared_prefs.dart';
 import '../widgets/drawer_listTile.dart';
 import 'package:voom/widgets/logout_list_tile.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +64,6 @@ class _HomeStateState extends State<HomeState> {
             ),
             label: 'Card',
           ),
-          
           BottomNavigationBarItem(
             tooltip: 'View products',
             icon: Icon(
@@ -115,7 +117,7 @@ class _HomeStateState extends State<HomeState> {
             DrawerListTile(
               txt: 'Invite a friend',
               onPress: () {
-                Navigator.pushNamed(context, OnboardingPage.id);
+                // Navigator.pushNamed(context, OnboardingPage.id);
               },
               icon: Icons.outgoing_mail,
             ),
@@ -140,7 +142,7 @@ class _HomeStateState extends State<HomeState> {
                   iconData: FontAwesomeIcons.arrowRightFromBracket,
                   text: 'Logout',
                   onPress: () {
-                    Navigator.popAndPushNamed(context, LoginScreen.id);
+                    logUserOut();
                   }),
             )
           ],
@@ -166,5 +168,12 @@ class _HomeStateState extends State<HomeState> {
       ),
       body: _screens[_selectedIndex],
     );
+  }
+
+  Future<void> logUserOut() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.remove(SharedPreferencesKeys.email.toString());
+    await FirebaseAuth.instance.signOut();
+    Navigator.popAndPushNamed(context, LoginScreen.id);
   }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:voom/pages/card_page.dart';
 import 'package:voom/pages/homeScreen.dart';
 import 'package:voom/pages/home_state.dart';
+import 'package:voom/pages/intro/wrapper.dart';
 import 'package:voom/pages/local_transfer.dart';
 import 'package:voom/pages/login_screen.dart';
 import 'package:voom/pages/onboarding_page.dart';
@@ -36,9 +37,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blueGrey,
       ),
-      initialRoute: HomeState.id,
+      home: const Wrapper(),
+      // initialRoute: HomeState.id,
       routes: {
-        HomeState.id: (context) => const HomeState(),
+        // HomeState.id: (context) => const HomeState(),
         HomeScreen.id: (context) => const HomeScreen(),
         CardPage.id: (context) => const CardPage(),
         ProfilePage.id: (context) => const ProfilePage(),
@@ -48,7 +50,10 @@ class MyApp extends StatelessWidget {
         RegistrationScreen.id: (context) => const RegistrationScreen(),
         OnboardingPage.id: (context) => OnboardingPage(),
         SuccessSendPage.id: (context) => const SuccessSendPage(),
+
+
         SettingsPage.id:(context) => SettingsPage(),
+
       },
     );
   }

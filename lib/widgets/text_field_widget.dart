@@ -9,13 +9,18 @@ class myTextFieldWidget extends StatelessWidget {
   final TextInputType textInputType;
   final bool obscureText;
   late final Widget? suffixIcon;
+
+  var controller = TextEditingController();
+
   final TextEditingController? controller;
   Function(String)? onChange;
+
 
   myTextFieldWidget(
       {required this.hinText,
       this.iconData,
       required this.textInputType,
+      required this.controller,
       this.suffixIcon,
       this.onChange,
       this.controller,
@@ -29,6 +34,7 @@ class myTextFieldWidget extends StatelessWidget {
         controller: controller,
         obscureText: obscureText,
         keyboardType: textInputType,
+        controller: controller,
         style: GoogleFonts.poppins(color: kmonochromcolorwhite),
         decoration: InputDecoration(
           hintText: hinText,
