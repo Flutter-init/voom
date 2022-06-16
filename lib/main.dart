@@ -13,7 +13,7 @@ import 'package:voom/pages/settingsPage.dart';
 import 'package:voom/pages/spaces_page.dart';
 import 'package:voom/pages/success_page.dart';
 
-import 'package:firebase_core/firebase_core.dart';
+
 import 'firebase_options.dart';
 
 void main() async {
