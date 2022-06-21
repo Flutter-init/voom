@@ -210,7 +210,8 @@ class _LoginScreenState extends State<LoginScreen> {
               })
           .catchError((e) {
         // Fluttertoast.showToast(msg: e!.message);
-        MessageUtils.voomSnackBarMessage(context, e!.message, 'Dismiss');
+        MessageUtils.voomSnackBarMessage(
+            context, "Please complete all required inputs", 'Dismiss');
       });
     } finally {
       setState(() => _logingIn = false);

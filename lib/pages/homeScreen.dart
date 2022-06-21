@@ -1,8 +1,10 @@
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/model/requestbottomSheet.dart';
 import 'package:voom/model/sendbottomSheet.dart';
+import 'package:voom/model/shared_prefs.dart';
 import 'package:voom/pages/local_transfer.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,6 +31,8 @@ class _HomeScreenState extends State<HomeScreen> {
     const numItems = 5;
 
     Widget _buildRow() {
+      //TODO: Make this _buildRow() method dynamic also. Therefore:
+      //TODO: therefore, clear the list and if there is no recent activity display the text: 'All your transaction activities will show up here'
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: const [
@@ -151,12 +155,13 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: kmonochromcolorwhite,
                 ),
               ),
-              const MyListTileCard(
+              MyListTileCard(
                 header: 'Financial Overview',
                 text: 'Voom savings account',
                 avatarChild: Image(
                   image: AssetImage('images/logo.png'),
                 ),
+                //TODO: make the name dynamic by getting the name after registration and replacing it ***Barbara Scott***
                 subText: '8300000187\nBarbara Scott',
                 trailing: "\$3000.00",
               ),
@@ -176,6 +181,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(
                     onPressed: () {
+                      //TODO: draw history histogram
                       // do something - statistics
                     },
                     icon: const Icon(
@@ -185,6 +191,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(
                     onPressed: () {
+                      //TODO: search through all activities
                       //do something - search for
                     },
                     icon: const Icon(

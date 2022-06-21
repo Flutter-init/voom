@@ -5,7 +5,6 @@ import 'package:voom/utility/message_utils.dart';
 
 import '../model/shared_prefs.dart';
 import 'home_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'login_screen.dart';
 import 'package:flutter/material.dart';
@@ -36,8 +35,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
   final _fullNameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
-  final _phoneNumberCtrl = TextEditingController();
-  final _dobCtrl = TextEditingController();
+  // final _phoneNumberCtrl = TextEditingController();
+  // final _dobCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
   final _auth = FirebaseAuth.instance;
@@ -141,18 +140,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   
 
                 ),
-                myTextFieldWidget(
-                  hinText: 'Phone number',
-                  iconData: Icons.phone,
-                  textInputType: TextInputType.phone,
-                  controller: _phoneNumberCtrl,
-                ),
-                myTextFieldWidget(
-                  hinText: 'Date of birth',
-                  iconData: FontAwesomeIcons.cakeCandles,
-                  textInputType: TextInputType.number,
-                  controller: _dobCtrl,
-                ),
+                // myTextFieldWidget(
+                //   hinText: 'Phone number',
+                //   iconData: Icons.phone,
+                //   textInputType: TextInputType.phone,
+                //   controller: _phoneNumberCtrl,
+                // ),
+                // myTextFieldWidget(
+                //   hinText: 'Date of birth',
+                //   iconData: FontAwesomeIcons.cakeCandles,
+                //   textInputType: TextInputType.number,
+                //   controller: _dobCtrl,
+                // ),
                 myTextFieldWidget(
                   
                   suffixIcon: GestureDetector(
@@ -242,8 +241,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             if (isChecked == false ||
                                 _fullNameCtrl.text == '' ||
                                 _emailCtrl.text == '' ||
-                                _phoneNumberCtrl.text == '' ||
-                                _dobCtrl.text == '' ||
+                                // _phoneNumberCtrl.text == '' ||
+                                // _dobCtrl.text == '' ||
                                 _passwordCtrl.text == '') {
                               MessageUtils.voomSnackBarMessage(context,
                                   'Please all field are required', 'OK');
@@ -253,13 +252,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             }
                           },
                         ),
-// =======
-//                 myLoginButton(
-//                   mtext: 'Sign up',
-//                   onPress: () {
-//                     // Navigator.popAndPushNamed(context, HomeState.id);
-//                   },
-// >>>>>>> master
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -301,11 +293,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
                 setSharedPreferences(_fullNameCtrl.text, _emailCtrl.text,
-                    _phoneNumberCtrl.text, _dobCtrl.text),
+                   ),
                 _emailCtrl.clear(),
                 _passwordCtrl.clear(),
-                _phoneNumberCtrl.clear(),
-                _dobCtrl.clear(),
+                // _phoneNumberCtrl.clear(),
+                // _dobCtrl.clear(),
                 _fullNameCtrl.clear(),
                 Navigator.popAndPushNamed(context, HomeState.id),
               })
@@ -317,16 +309,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     }
   }
 
-  setSharedPreferences(String fullName, String emailAddress, String phoneNumber,
-      String dob) async {
+  setSharedPreferences(String fullName, String emailAddress) async {
     final prefs = await SharedPreferences.getInstance();
     prefs.setString(
         SharedPreferencesKeys.fullName.toString(), fullName.toString());
     prefs.setString(
         SharedPreferencesKeys.email.toString(), emailAddress.toString());
-    prefs.setString(
-        SharedPreferencesKeys.phone.toString(), phoneNumber.toString());
-    prefs.setString(SharedPreferencesKeys.dob.toString(), dob.toString());
+    // prefs.setString(
+    //     SharedPreferencesKeys.phone.toString(), phoneNumber.toString());
+    // prefs.setString(SharedPreferencesKeys.dob.toString(), dob.toString());
   }
 }
 

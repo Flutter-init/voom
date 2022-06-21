@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/pages/card_page.dart';
+import 'package:voom/pages/complete_reg.dart';
 import 'package:voom/pages/homeScreen.dart';
 import 'package:voom/pages/home_state.dart';
 import 'package:voom/pages/intro/wrapper.dart';
@@ -52,7 +53,8 @@ class MyApp extends StatelessWidget {
         SuccessSendPage.id: (context) => const SuccessSendPage(),
 
 
-        SettingsPage.id:(context) => SettingsPage(),
+        SettingsPage.id:(context) => const SettingsPage(),
+        CompleteRegistration.id:(context) => const CompleteRegistration(),
 
       },
     );
