@@ -1,10 +1,13 @@
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter/material.dart';
+import 'package:search_page/search_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:voom/model/activity_data.dart';
 import 'package:voom/model/requestbottomSheet.dart';
 import 'package:voom/model/sendbottomSheet.dart';
 import 'package:voom/model/shared_prefs.dart';
+import 'package:voom/pages/chart_page.dart';
 import 'package:voom/pages/local_transfer.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -25,31 +28,55 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _controller = ScrollController();
 
+  String _fullName = '';
+
+  getName() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _fullName = prefs.getString(SharedPreferencesKeys.fullName.toString())!;
+    return _fullName;
+  }
+
+  var items = [
+    ActivityData(
+        '01 July 2022', 'Purchased XBox at Amazon', 'Spent', '\$30.09'),
+    ActivityData(
+        '23 July 2022', 'Purchased PS4 at Ali Express', 'Spent', '\$50.09'),
+    ActivityData('30 July 2022', 'Subscribed to netflix', 'Spent', '\$9.09'),
+    ActivityData(
+        '23 July 2022', 'Money to Jason statham', 'Received', '\$5000.09'),
+  ];
+
+  @override
+  initState() {
+    super.initState();
+    getName();
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    const numItems = 5;
+    var numItems = items.length;
 
-    Widget _buildRow() {
+    Widget _buildRow(ActivityData activityData) {
       //TODO: Make this _buildRow() method dynamic also. Therefore:
       //TODO: therefore, clear the list and if there is no recent activity display the text: 'All your transaction activities will show up here'
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: const [
+        children: [
           MyListTileCard(
             subTextColor: kmonochromcolor2,
             cardColor: kInactiveCardColor,
             textColor: kmonochromcolorwhite,
             avatarColor: kBottomBarItemscolor,
-            header: '01 July 2022',
-            text: 'Purchased XBox at Amazon',
-            avatarChild: Icon(
+            header: activityData.header!,
+            text: activityData.text!,
+            avatarChild: const Icon(
               Icons.credit_card,
             ),
-            subText: 'Spent',
-            trailing: "\$30.09",
+            subText: activityData.subText!,
+            trailing: activityData.trailing!,
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 10),
             child: Divider(
               color: kmonochromcolorwhite,
@@ -162,7 +189,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   image: AssetImage('images/logo.png'),
                 ),
                 //TODO: make the name dynamic by getting the name after registration and replacing it ***Barbara Scott***
-                subText: '8300000187\nBarbara Scott',
+                subText: _fullName.isEmpty
+                    ? '8300000187\nNo name'
+                    : '8300000187\n$_fullName',
                 trailing: "\$3000.00",
               ),
               Row(
@@ -183,6 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       //TODO: draw history histogram
                       // do something - statistics
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => const ChartPage()));
                     },
                     icon: const Icon(
                       Icons.bar_chart,
@@ -193,6 +224,24 @@ class _HomeScreenState extends State<HomeScreen> {
                     onPressed: () {
                       //TODO: search through all activities
                       //do something - search for
+                      showSearch(
+                          context: context,
+                          delegate: SearchPage<String>(
+                            builder: (property) =>
+                                const ListTile(title: Text('Hi')),
+                            items: ['Hi', 'Hello'],
+                            filter: (property) => ['Hi'],
+                            failure: const Center(
+                              child: Text('Query not found'),
+                            ),
+                            searchStyle: const TextStyle(color: Colors.white),
+                            barTheme: ThemeData(
+                                primaryColor: Colors.white,
+                                appBarTheme: const AppBarTheme(
+                                    titleTextStyle:
+                                        TextStyle(color: Colors.white),
+                                    backgroundColor: kInactiveCardColor)),
+                          ));
                     },
                     icon: const Icon(
                       Icons.search,
@@ -204,14 +253,21 @@ class _HomeScreenState extends State<HomeScreen> {
               Container(
                 // margin: EdgeInsets.symmetric(horizontal: 10),
                 height: height * 0.5,
-                child: ListView.builder(
-                  controller: _controller,
-                  itemCount: numItems,
-                  padding: const EdgeInsets.all(16.0),
-                  itemBuilder: (BuildContext context, int i) {
-                    return _buildRow();
-                  },
-                ),
+                child: numItems != 0
+                    ? ListView.builder(
+                        controller: _controller,
+                        itemCount: numItems,
+                        padding: const EdgeInsets.all(16.0),
+                        itemBuilder: (BuildContext context, int index) {
+                          return _buildRow(items[index]);
+                        },
+                      )
+                    : Center(
+                        child: Text(
+                          'All your transaction activities will show up here',
+                          style: GoogleFonts.poppins(color: Colors.white),
+                        ),
+                      ),
                 decoration: kContainerDeco,
               ),
             ],
