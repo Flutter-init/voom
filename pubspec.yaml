@@ -56,7 +56,8 @@ dependencies:
   image_picker: ^0.8.5+3
   # google_sign_in: ^5.3.2
 
-  
+  syncfusion_flutter_charts: ^20.2.36
+  search_page: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:
