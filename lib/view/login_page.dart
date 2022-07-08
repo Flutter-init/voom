@@ -5,9 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/utility/constants.dart';
 
 import '../model/shared_prefs.dart';
-import 'home_state.dart';
+import '../model/home_page_model.dart';
 
-import 'registration_screen.dart';
+import 'registration_page.dart';
 
 import 'package:flutter/material.dart';
 

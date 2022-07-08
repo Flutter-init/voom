@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/pages/success_page.dart';
+import 'package:voom/view/success_page.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:voom/widgets/myListTileCard.dart';
 import 'package:voom/widgets/text_field_widget.dart';

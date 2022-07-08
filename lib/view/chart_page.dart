@@ -7,6 +7,7 @@ import '../utility/constants.dart';
 
 class ChartPage extends StatefulWidget {
   const ChartPage({Key? key}) : super(key: key);
+  static String id = '/chartPage';
 
   @override
   State<ChartPage> createState() => _ChartPageState();

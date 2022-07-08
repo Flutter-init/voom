@@ -1,12 +1,8 @@
-import 'dart:convert';
-import 'dart:typed_data';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:voom/pages/settingsPage.dart';
+import 'package:voom/view/settings_page.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -33,21 +29,8 @@ class _ProfilePageState extends State<ProfilePage> {
   Future<void> _pickImageFromGallery() async {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
-      // saveImage();
       setState(() => _imageFile = File(pickedFile.path));
     }
-  }
-
-  static Future<bool> saveImage(Uint8List imageBytes) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String base64Image = base64Encode(imageBytes);
-    return prefs.setString("profile-image", base64Image);
-  }
-
-  static Future<Image> getImage() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    Uint8List bytes = base64Decode(prefs.getString("profile-image")!);
-    return Image.memory(bytes);
   }
 
   @override

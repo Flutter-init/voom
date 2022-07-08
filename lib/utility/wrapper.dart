@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:voom/pages/home_state.dart';
-import 'package:voom/pages/login_screen.dart';
-import 'package:voom/pages/onboarding_page.dart';
+import 'package:voom/model/home_page_model.dart';
+import 'package:voom/view/login_page.dart';
+import 'package:voom/view/onboarding_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../model/shared_prefs.dart';
-import '../homeScreen.dart';
+import '../model/shared_prefs.dart';
+import '../view/home_page.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);

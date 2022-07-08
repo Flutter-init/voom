@@ -4,9 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/message_utils.dart';
 
 import '../model/shared_prefs.dart';
-import 'home_state.dart';
+import '../model/home_page_model.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'login_screen.dart';
+import 'login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

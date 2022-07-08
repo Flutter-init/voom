@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/pages/login_screen.dart';
+import 'package:voom/view/login_page.dart';
 import 'package:voom/utility/constants.dart';
 
 import '../widgets/m_list_tile.dart';
@@ -73,7 +73,7 @@ class _SettingsPageState extends State<SettingsPage> {
                     ),
                   ),
                   const SimpleCardListTile(
-                      avatarColor: kInactiveCardColor,
+                      avatarColor: kActiveCardColor,
                       cardColor: kActiveCardColor,
                       textColor: kmonochromcolorwhite,
                       subTextColor: kmonochromcolor2,
@@ -84,7 +84,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       text: 'Email settings',
                       subText: 'barbara.scott@voom.com'),
                   const SimpleCardListTile(
-                      avatarColor: kInactiveCardColor,
+                      avatarColor: kActiveCardColor,
                       cardColor: kActiveCardColor,
                       textColor: kmonochromcolorwhite,
                       subTextColor: kmonochromcolor2,
@@ -94,21 +94,26 @@ class _SettingsPageState extends State<SettingsPage> {
                       ),
                       text: 'Change password',
                       subText: '******'),
-                  MListTile(
-                    iconData: Icons.fingerprint,
-                    text: 'Use fingerprint to log in',
-                    onPress: () {
-                      //do something;
-                    },
-                    trailing: Switch(
-                        activeColor: kSendFABcolor,
-                        inactiveThumbColor: kmonochromcolor2,
-                        value: _isRTFSwitchOn,
-                        onChanged: (bool value) {
-                          setState(() {
-                            _isRTFSwitchOn = value;
-                          });
-                        }),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: Card(color: kActiveCardColor,
+                      child: MListTile(
+                        iconData: Icons.fingerprint,
+                        text: 'Use fingerprint to log in',
+                        onPress: () {
+                          //do something;
+                        },
+                        trailing: Switch(
+                            activeColor: kSendFABcolor,
+                            inactiveThumbColor: kmonochromcolor2,
+                            value: _isRTFSwitchOn,
+                            onChanged: (bool value) {
+                              setState(() {
+                                _isRTFSwitchOn = value;
+                              });
+                            }),
+                      ),
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 20.0, left: 10.0),

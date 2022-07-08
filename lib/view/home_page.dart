@@ -1,17 +1,16 @@
 import 'package:google_fonts/google_fonts.dart';
-
-import 'package:flutter/material.dart';
 import 'package:search_page/search_page.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:voom/model/activity_data.dart';
 import 'package:voom/model/requestbottomSheet.dart';
 import 'package:voom/model/sendbottomSheet.dart';
 import 'package:voom/model/shared_prefs.dart';
-import 'package:voom/pages/chart_page.dart';
-import 'package:voom/pages/local_transfer.dart';
+import 'package:voom/view/bank_transfer_page.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:voom/view/chart_page.dart';
 
+import '../model/activity_data.dart';
 import '../widgets/bottomSheet_listTile.dart';
 import '../widgets/column_circleAvatar_text.dart';
 
@@ -55,7 +54,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
-    var numItems = items.length;
+    // var numItems = items.length;
+    var numItems = 0;
 
     Widget _buildRow(ActivityData activityData) {
       //TODO: Make this _buildRow() method dynamic also. Therefore:
@@ -210,10 +210,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   IconButton(
                     onPressed: () {
+                      Navigator.pushNamed(context, ChartPage.id);
                       //TODO: draw history histogram
                       // do something - statistics
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => const ChartPage()));
+                      
                     },
                     icon: const Icon(
                       Icons.bar_chart,

@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:voom/widgets/bottomSheet_listTile.dart';
 
-import '../pages/local_transfer.dart';
 import 'listTileNoIcon.dart';
 
 class BuildRequestBottomSheet {
@@ -12,10 +10,10 @@ class BuildRequestBottomSheet {
   BuildRequestBottomSheet({required this.contxt});
 
   Container _buildContainer(BuildContext context) {
-    double height = MediaQuery.of(context).size.height;
     contxt = context;
+    double height = MediaQuery.of(contxt).size.height;
     return Container(
-      height: height * 0.7,
+      height: height * .7,
       padding: const EdgeInsets.all(8.0),
       child: ListView(
         children: <Widget>[
@@ -82,11 +80,11 @@ class BuildRequestBottomSheet {
               ),
             ),
           ),
-          ListTileNoIcon(
+          const ListTileNoIcon(
             title: 'Account number',
             subtitle: '8300000187',
           ),
-          ListTileNoIcon(
+          const ListTileNoIcon(
             title: 'Account type',
             subtitle: 'Checking',
           ),
@@ -117,7 +115,7 @@ class BuildRequestBottomSheet {
                 onPressed: () {},
               ),
             ),
-          )
+          ),
         ],
       ),
     );
