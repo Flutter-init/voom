@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:voom/model/card_page.dart';
+import 'package:voom/view/card_page.dart';
 import 'package:voom/view/home_page.dart';
 import 'package:voom/view/onboarding_page.dart';
 import 'package:voom/view/profile_page.dart';
 
 import 'package:voom/view/spaces_page.dart';
 import 'shared_prefs.dart';
-import '../widgets/drawer_listTile.dart';
+import '../widgets/drawer_list_tile.dart';
 import 'package:voom/widgets/logout_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
@@ -17,18 +17,18 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import '../view/login_page.dart';
 
-class HomeState extends StatefulWidget {
+class HomePageModel extends StatefulWidget {
   static const String id = '/';
-  const HomeState({Key? key}) : super(key: key);
+  const HomePageModel({Key? key}) : super(key: key);
 
   @override
-  State<HomeState> createState() => _HomeStateState();
+  State<HomePageModel> createState() => _HomePageModelState();
 }
 
-class _HomeStateState extends State<HomeState> {
+class _HomePageModelState extends State<HomePageModel> {
   int _selectedIndex = 0;
   final List _screens = [
-    const HomeScreen(),
+    const HomePage(),
     const CardPage(),
     const SpacesPage(),
     const ProfilePage(),
@@ -100,7 +100,7 @@ class _HomeStateState extends State<HomeState> {
             DrawerListTile(
               txt: 'Home',
               onPress: () {
-                Navigator.popAndPushNamed(context, HomeState.id);
+                Navigator.popAndPushNamed(context, HomePageModel.id);
               },
               icon: Icons.cottage,
             ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:introduction_screen/introduction_screen.dart';
-import 'package:voom/model/home_page_model.dart';
 import 'package:voom/view/registration_page.dart';
 import 'package:voom/utility/constants.dart';
 
@@ -16,7 +15,8 @@ class OnboardingPage extends StatefulWidget {
 
 class _OnboardingPageState extends State<OnboardingPage> {
   void _onIntroEnd(context) {
-    Navigator.pushNamed(context, RegistrationScreen.id);
+    Navigator.pushNamedAndRemoveUntil(
+        context, RegistrationPage.id, (route) => false);
   }
 
   Widget _buildImage(String assetName, [double width = 300]) {
@@ -25,7 +25,8 @@ class _OnboardingPageState extends State<OnboardingPage> {
 
   @override
   Widget build(BuildContext context) {
-    final bodyStyle = GoogleFonts.poppins(fontSize: 20, color: kmonochromcolor2);
+    final bodyStyle =
+        GoogleFonts.poppins(fontSize: 20, color: kmonochromcolor2);
 
     final pageDecoration = PageDecoration(
       titleTextStyle: GoogleFonts.poppins(

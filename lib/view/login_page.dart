@@ -85,16 +85,16 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    mySocialMediaButton(
+                    MySocialMediaButton(
                         FontAwesomeIcons.facebookF, Colors.blue),
                     const SizedBox(
                       width: 15.0,
                     ),
-                    mySocialMediaButton(FontAwesomeIcons.google, Colors.blue),
+                    MySocialMediaButton(FontAwesomeIcons.google, Colors.blue),
                     const SizedBox(
                       width: 15.0,
                     ),
-                    mySocialMediaButton(FontAwesomeIcons.twitter, Colors.blue),
+                    MySocialMediaButton(FontAwesomeIcons.twitter, Colors.blue),
                   ],
                 ),
                 const SizedBox(
@@ -106,13 +106,13 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: kmonochromcolorwhite, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
-                myTextFieldWidget(
+                MyTextFieldWidget(
                   hinText: 'Email',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
                   controller: _emailCtrl,
                 ),
-                myTextFieldWidget(
+                MyTextFieldWidget(
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: CircularProgressIndicator(
                                   color: Colors.white)),
                         )
-                      : myLoginButton(
+                      : MyLoginButton(
                           mtext: 'Login',
                           onPress: () {
                             _logUserInWithEmailAndPassword(
@@ -164,8 +164,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: kBottomBarItemscolor, fontSize: 15),
                       ),
                       onPressed: () {
-                        Navigator.popAndPushNamed(
-                            context, RegistrationScreen.id);
+                        Navigator.popAndPushNamed(context, RegistrationPage.id);
                         //do something
                       },
                     ),
@@ -206,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 setSharedPreferences(_emailCtrl.text, _passwordCtrl.text),
                 _emailCtrl.clear(),
                 _passwordCtrl.clear(),
-                Navigator.popAndPushNamed(context, HomeState.id),
+                Navigator.popAndPushNamed(context, HomePageModel.id),
               })
           .catchError((e) {
         // Fluttertoast.showToast(msg: e!.message);

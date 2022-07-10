@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
 
-class mySocialMediaButton extends StatelessWidget {
+class MySocialMediaButton extends StatelessWidget {
   final IconData iconData;
   final Color iconColor;
-  mySocialMediaButton(this.iconData, this.iconColor);
+  MySocialMediaButton(this.iconData, this.iconColor);
 
   @override
   Widget build(BuildContext context) {

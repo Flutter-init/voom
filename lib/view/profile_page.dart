@@ -7,10 +7,10 @@ import 'package:voom/utility/constants.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-import '../widgets/m_list_tile.dart';
+import '../widgets/simple_list_tile.dart';
 
 class ProfilePage extends StatefulWidget {
-  static String id = '/profilePage';
+  static String id = '/profile_page';
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
@@ -182,49 +182,49 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: kmonochromcolorwhite,
                         ),
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.settings,
                         text: 'General settings',
                         onPress: () {
                           Navigator.pushNamed(context, SettingsPage.id);
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.account_balance,
                         text: 'Account details',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.calendar_month,
                         text: 'Scheduled transfers',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.fax,
                         text: 'Receive by email or phone',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.menu_book,
                         text: 'Statement of account',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.route,
                         text: 'Automatic currency conversion',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.line_weight,
                         text: 'Account limits',
                         onPress: () {

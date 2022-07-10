@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
 
-class myCircleAvatar extends StatelessWidget {
+class MyCircleAvatar extends StatelessWidget {
   late final double circleRadius;
   // late final IconData iconData;
   // late final Color iconColor;
@@ -9,7 +9,7 @@ class myCircleAvatar extends StatelessWidget {
   late final String img;
   late final Color avataBackCOlor;
 
-  myCircleAvatar(
+  MyCircleAvatar(
       {this.circleRadius = 40.0,
       // required this.iconData,
       // this.iconColor = kmoochromcolorwhite,

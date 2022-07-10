@@ -6,7 +6,7 @@ import 'package:voom/model/home_page_model.dart';
 import 'package:voom/utility/constants.dart';
 import 'dart:ui' as ui;
 
-import 'package:voom/widgets/bottomSheet_listTile.dart';
+import 'package:voom/widgets/bottomsheet_list_tile.dart';
 import 'package:voom/widgets/login_button.dart';
 
 class SuccessSendPage extends StatelessWidget {
@@ -112,10 +112,10 @@ class SuccessSendPage extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: myLoginButton(
+            child: MyLoginButton(
                 mtext: 'Continue',
                 onPress: () {
-                  Navigator.popAndPushNamed(context, HomeState.id);
+                  Navigator.popAndPushNamed(context, HomePageModel.id);
                 }),
           ),
         ],

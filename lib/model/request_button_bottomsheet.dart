@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
 
-import 'listTileNoIcon.dart';
+import '../widgets/list_tile_with_no_icon.dart';
 
 class BuildRequestBottomSheet {
   BuildContext contxt;

@@ -2,8 +2,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:search_page/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:voom/model/requestbottomSheet.dart';
-import 'package:voom/model/sendbottomSheet.dart';
+import 'package:voom/model/request_button_bottomsheet.dart';
+import 'package:voom/model/send_button_bottomsheet.dart';
 import 'package:voom/model/shared_prefs.dart';
 import 'package:voom/view/bank_transfer_page.dart';
 import 'package:voom/utility/constants.dart';
@@ -11,20 +11,20 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:voom/view/chart_page.dart';
 
 import '../model/activity_data.dart';
-import '../widgets/bottomSheet_listTile.dart';
-import '../widgets/column_circleAvatar_text.dart';
+import '../widgets/bottomsheet_list_tile.dart';
+import '../widgets/column_circle_avatar_text.dart';
 
-import '../widgets/myListTileCard.dart';
+import '../widgets/my_list_tile_card.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomePage extends StatefulWidget {
   static const String id = '/homescreen';
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
 
   String _fullName = '';
@@ -98,7 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MColumnCircleNText(
+                    MyColumnCircleAvaterNText(
                       onPress: () {
                         showModalBottomSheet(
                           shape: const RoundedRectangleBorder(
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       iconData: FontAwesomeIcons.arrowUpRightFromSquare,
                       text: 'Send',
                     ),
-                    MColumnCircleNText(
+                    MyColumnCircleAvaterNText(
                       iconData: FontAwesomeIcons.download,
                       text: 'Request',
                       onPress: () {
@@ -134,11 +134,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             backgroundColor: kmonochromcolorwhite);
                       },
                     ),
-                    MColumnCircleNText(
+                    MyColumnCircleAvaterNText(
                       iconData: FontAwesomeIcons.moneyBillTrendUp,
                       text: 'Invest',
                     ),
-                    MColumnCircleNText(
+                    MyColumnCircleAvaterNText(
                       iconData: FontAwesomeIcons.hands,
                       text: 'Loan',
                     ),
@@ -213,7 +213,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       Navigator.pushNamed(context, ChartPage.id);
                       //TODO: draw history histogram
                       // do something - statistics
-                      
                     },
                     icon: const Icon(
                       Icons.bar_chart,

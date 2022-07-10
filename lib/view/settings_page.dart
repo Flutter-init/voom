@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/view/login_page.dart';
 import 'package:voom/utility/constants.dart';
 
-import '../widgets/m_list_tile.dart';
-import '../widgets/simpleCardListTile.dart';
+import '../widgets/simple_list_tile.dart';
+import '../widgets/simple_card_list_tile.dart';
 
 class SettingsPage extends StatefulWidget {
-  static String id = '/settingsPage';
+  static String id = '/settings_page';
   const SettingsPage({Key? key}) : super(key: key);
 
   @override
@@ -96,8 +96,9 @@ class _SettingsPageState extends State<SettingsPage> {
                       subText: '******'),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
-                    child: Card(color: kActiveCardColor,
-                      child: MListTile(
+                    child: Card(
+                      color: kActiveCardColor,
+                      child: MySimpleListTile(
                         iconData: Icons.fingerprint,
                         text: 'Use fingerprint to log in',
                         onPress: () {
@@ -130,14 +131,14 @@ class _SettingsPageState extends State<SettingsPage> {
                       color: kmonochromcolorwhite,
                     ),
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: FontAwesomeIcons.user,
                     text: 'Personal details',
                     onPress: () {
                       //do something;
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.notifications,
                     text: 'Push Notifications',
                     onPress: () {
@@ -153,14 +154,14 @@ class _SettingsPageState extends State<SettingsPage> {
                           });
                         }),
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.translate,
                     text: 'App Language',
                     onPress: () {
                       //do something;
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.logout,
                     text: 'Sign out',
                     onPress: () {

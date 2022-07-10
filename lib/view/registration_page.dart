@@ -16,22 +16,19 @@ import '../widgets/social_media_button.dart';
 import '../widgets/text_field_widget.dart';
 import '../widgets/login_button.dart';
 
-class RegistrationScreen extends StatefulWidget {
+class RegistrationPage extends StatefulWidget {
   // variable for navigating to this screen
   static const String id = '/registration';
 
-  const RegistrationScreen({Key? key}) : super(key: key);
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
-  State<RegistrationScreen> createState() => _RegistrationScreenState();
+  State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> {
+class _RegistrationPageState extends State<RegistrationPage> {
   late bool isChecked = false;
   bool _showPassword = true;
-  
-  
- 
 
   final _fullNameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
@@ -103,16 +100,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    mySocialMediaButton(
+                    MySocialMediaButton(
                         FontAwesomeIcons.facebookF, Colors.blue),
                     const SizedBox(
                       width: 15.0,
                     ),
-                    mySocialMediaButton(FontAwesomeIcons.google, Colors.blue),
+                    MySocialMediaButton(FontAwesomeIcons.google, Colors.blue),
                     const SizedBox(
                       width: 15.0,
                     ),
-                    mySocialMediaButton(FontAwesomeIcons.twitter, Colors.blue),
+                    MySocialMediaButton(FontAwesomeIcons.twitter, Colors.blue),
                   ],
                 ),
                 const SizedBox(
@@ -124,21 +121,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       color: kmonochromcolorwhite, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
-                myTextFieldWidget(
+                MyTextFieldWidget(
                   hinText: 'Full name',
                   iconData: FontAwesomeIcons.user,
                   textInputType: TextInputType.name,
                   controller: _fullNameCtrl,
                 ),
-                myTextFieldWidget(
+                MyTextFieldWidget(
                   hinText: 'Email address',
                   iconData: FontAwesomeIcons.envelope,
                   textInputType: TextInputType.emailAddress,
-
                   controller: _emailCtrl,
-
-                  
-
                 ),
                 // myTextFieldWidget(
                 //   hinText: 'Phone number',
@@ -152,8 +145,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                 //   textInputType: TextInputType.number,
                 //   controller: _dobCtrl,
                 // ),
-                myTextFieldWidget(
-                  
+                MyTextFieldWidget(
                   suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -235,7 +227,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               child: CircularProgressIndicator(
                                   color: Colors.white)),
                         )
-                      : myLoginButton(
+                      : MyLoginButton(
                           mtext: 'Sign up',
                           onPress: () {
                             if (isChecked == false ||
@@ -292,14 +284,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
-                setSharedPreferences(_fullNameCtrl.text, _emailCtrl.text,
-                   ),
+                setSharedPreferences(
+                  _fullNameCtrl.text,
+                  _emailCtrl.text,
+                ),
                 _emailCtrl.clear(),
                 _passwordCtrl.clear(),
                 // _phoneNumberCtrl.clear(),
                 // _dobCtrl.clear(),
                 _fullNameCtrl.clear(),
-                Navigator.popAndPushNamed(context, HomeState.id),
+                Navigator.popAndPushNamed(context, HomePageModel.id),
               })
           .catchError((e) {
         MessageUtils.voomSnackBarMessage(context, e!.message, 'Dismiss');
@@ -320,18 +314,3 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     // prefs.setString(SharedPreferencesKeys.dob.toString(), dob.toString());
   }
 }
-
- // actions: [
-        //   IconButton(
-        //     onPressed: () async {
-        //       // navigate directly to onboarding page
-        //       final prefs = await SharedPreferences.getInstance();
-        //       prefs.setBool('showHome', false);
-
-        //       Navigator.pushNamed(context, OnBoardingScreen.id);
-        //     },
-        //     icon: Icon(
-        //       Icons.logout,
-        //       color: kPrimaryColor0,
-        //     ),
-        //   )

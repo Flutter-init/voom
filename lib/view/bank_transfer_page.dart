@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/view/success_page.dart';
+import 'package:voom/view/success_send_page.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:voom/widgets/myListTileCard.dart';
+import 'package:voom/widgets/my_list_tile_card.dart';
 import 'package:voom/widgets/text_field_widget.dart';
 
-import '../widgets/textFieldNoIcon.dart';
+import '../widgets/text_field_with_no_icon.dart';
 
-class LocalTransferPage extends StatefulWidget {
-  static String id = '/local';
-  LocalTransferPage({Key? key}) : super(key: key);
+class BankTransferPage extends StatefulWidget {
+  static String id = '/bank_transfer';
+  BankTransferPage({Key? key}) : super(key: key);
 
   @override
-  State<LocalTransferPage> createState() => _LocalTransferPageState();
+  State<BankTransferPage> createState() => _BankTransferPageState();
 }
 
-class _LocalTransferPageState extends State<LocalTransferPage> {
+class _BankTransferPageState extends State<BankTransferPage> {
   static const menuItems = <String>[
     'Savings',
     'Checking',

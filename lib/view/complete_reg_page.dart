@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
 
-class CompleteRegistration extends StatelessWidget {
+class CompleteRegistrationPage extends StatelessWidget {
   static String id = '/completereg';
-  const CompleteRegistration({Key? key}) : super(key: key);
+  const CompleteRegistrationPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

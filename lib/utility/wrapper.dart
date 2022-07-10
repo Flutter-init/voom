@@ -31,7 +31,7 @@ class _WrapperState extends State<Wrapper> {
   Widget build(BuildContext context) {
     final FirebaseAuth _auth = FirebaseAuth.instance;
     if (_auth.currentUser != null) {
-      return const HomeState();
+      return const HomePageModel();
     } else {
       if (_isLoggedInBefore == true) {
         return const LoginScreen();

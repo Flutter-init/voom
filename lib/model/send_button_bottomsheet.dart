@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:voom/widgets/bottomSheet_listTile.dart';
+import 'package:voom/widgets/bottomsheet_list_tile.dart';
 
 import '../view/bank_transfer_page.dart';
 
@@ -34,7 +34,7 @@ class BuildSendBottomSheet {
             avaColor: kActiveCardColor,
             iconColor: kmonochromcolorwhite,
             onPress: () {
-              Navigator.popAndPushNamed(context, LocalTransferPage.id);
+              Navigator.popAndPushNamed(context, BankTransferPage.id);
             },
           ),
           const BottomSheetListTile(

@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class myTextFieldWidget extends StatelessWidget {
+class MyTextFieldWidget extends StatelessWidget {
   final String hinText;
   final IconData? iconData;
   final TextInputType textInputType;
@@ -15,8 +15,7 @@ class myTextFieldWidget extends StatelessWidget {
   final TextEditingController? controller;
   Function(String)? onChange;
 
-
-  myTextFieldWidget(
+  MyTextFieldWidget(
       {required this.hinText,
       this.iconData,
       required this.textInputType,

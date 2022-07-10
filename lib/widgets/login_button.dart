@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
 
-class myLoginButton extends StatelessWidget {
+class MyLoginButton extends StatelessWidget {
   final String mtext;
   VoidCallback onPress;
   // Callback Function() onPress;
-  myLoginButton({required this.mtext, required this.onPress});
+  MyLoginButton({required this.mtext, required this.onPress});
 
   @override
   Widget build(BuildContext context) {

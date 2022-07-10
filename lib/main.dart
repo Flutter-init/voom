@@ -1,10 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/utility/wrapper.dart';
-
-
-
 import 'firebase_options.dart';
 import 'utility/navigate.dart';
 
@@ -29,7 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       home: const Wrapper(),
-      // initialRoute: HomeState.id,
+    
       routes: Navigate.routes,
     );
   }

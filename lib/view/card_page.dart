@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:voom/widgets/my_card.dart';
-import '../widgets/m_list_tile.dart';
+import 'package:voom/widgets/my_reuseable_card.dart';
+import '../widgets/simple_list_tile.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 
 class CardPage extends StatefulWidget {
@@ -55,42 +55,42 @@ class _CardPageState extends State<CardPage> {
                       color: kmonochromcolorwhite,
                     ),
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.settings,
                     text: 'Manage payment methods',
                     onPress: () {
                       //do something
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.password,
                     text: 'Show PIN',
                     onPress: () {
                       //do something
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.visibility,
                     text: 'Card details',
                     onPress: () {
                       //do something
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.ac_unit,
                     text: 'Freeze card',
                     onPress: () {
                       //do something
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.lock_open,
                     text: 'Unblock PIN',
                     onPress: () {
                       //do something
                     },
                   ),
-                  MListTile(
+                  MySimpleListTile(
                     iconData: Icons.recycling,
                     text: 'Replace card',
                     onPress: () {
