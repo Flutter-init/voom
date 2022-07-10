@@ -82,30 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 15.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MySocialMediaButton(
-                        FontAwesomeIcons.facebookF, Colors.blue),
-                    const SizedBox(
-                      width: 15.0,
-                    ),
-                    MySocialMediaButton(FontAwesomeIcons.google, Colors.blue),
-                    const SizedBox(
-                      width: 15.0,
-                    ),
-                    MySocialMediaButton(FontAwesomeIcons.twitter, Colors.blue),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                Text(
-                  'Or',
-                  style: GoogleFonts.poppins(
-                      color: kmonochromcolorwhite, fontSize: 20),
-                  textAlign: TextAlign.center,
-                ),
                 MyTextFieldWidget(
                   hinText: 'Email',
                   iconData: FontAwesomeIcons.envelope,
@@ -130,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     obscureText: _showPassword,
                     controller: _passwordCtrl),
                 const SizedBox(
-                  height: 30.0,
+                  height: 10.0,
                 ),
                 Container(
                   child: _logingIn
@@ -148,6 +124,34 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _emailCtrl.text, _passwordCtrl.text);
                           },
                         ),
+                ),
+                const SizedBox(
+                  height: 15.0,
+                ),
+                Text(
+                  'Or',
+                  style: GoogleFonts.poppins(
+                      color: kmonochromcolorwhite, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: 15.0,
+                ),
+                MySocialMediaButton(
+                  buttonColor: Colors.white,
+                  buttonText: 'Login with Google',
+                  icon: FontAwesomeIcons.google,
+                  iconColor: Colors.red,
+                  textColor: Colors.blueGrey,
+                  onPress: () {},
+                ),
+                MySocialMediaButton(
+                  buttonColor: Colors.blue,
+                  buttonText: 'Login with Facebook',
+                  icon: FontAwesomeIcons.facebookF,
+                  iconColor: Colors.white,
+                  textColor: Colors.white,
+                  onPress: () {},
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

@@ -97,30 +97,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(
                   height: 15.0,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MySocialMediaButton(
-                        FontAwesomeIcons.facebookF, Colors.blue),
-                    const SizedBox(
-                      width: 15.0,
-                    ),
-                    MySocialMediaButton(FontAwesomeIcons.google, Colors.blue),
-                    const SizedBox(
-                      width: 15.0,
-                    ),
-                    MySocialMediaButton(FontAwesomeIcons.twitter, Colors.blue),
-                  ],
-                ),
-                const SizedBox(
-                  height: 20.0,
-                ),
-                Text(
-                  'Or',
-                  style: GoogleFonts.poppins(
-                      color: kmonochromcolorwhite, fontSize: 20),
-                  textAlign: TextAlign.center,
-                ),
+
                 MyTextFieldWidget(
                   hinText: 'Full name',
                   iconData: FontAwesomeIcons.user,
@@ -162,6 +139,65 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   textInputType: TextInputType.visiblePassword,
                   obscureText: _showPassword,
                   controller: _passwordCtrl,
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  child: _signingUp
+                      ? const Center(
+                          child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                  color: Colors.white)),
+                        )
+                      : MyLoginButton(
+                          mtext: 'Sign up',
+                          onPress: () {
+                            if (isChecked == false ||
+                                _fullNameCtrl.text == '' ||
+                                _emailCtrl.text == '' ||
+                                // _phoneNumberCtrl.text == '' ||
+                                // _dobCtrl.text == '' ||
+                                _passwordCtrl.text == '') {
+                              MessageUtils.voomSnackBarMessage(context,
+                                  'Please all field are required', 'OK');
+                            } else {
+                              _signUpWithEmailAndPassword(
+                                  _emailCtrl.text, _passwordCtrl.text);
+                            }
+                          },
+                        ),
+                ),
+                const SizedBox(
+                  height: 15.0,
+                ),
+                Text(
+                  'Or',
+                  style: GoogleFonts.poppins(
+                      color: kmonochromcolorwhite, fontSize: 20),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  height: 10.0,
+                ),
+
+                MySocialMediaButton(
+                  buttonColor: Colors.white,
+                  buttonText: 'Sign up with Google',
+                  icon: FontAwesomeIcons.google,
+                  iconColor: Colors.red,
+                  textColor: Colors.blueGrey,
+                  onPress: () {},
+                ),
+                MySocialMediaButton(
+                  buttonColor: Colors.blue,
+                  buttonText: 'Sign up with Facebook',
+                  icon: FontAwesomeIcons.facebookF,
+                  iconColor: Colors.white,
+                  textColor: Colors.white,
+                  onPress: () {},
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -218,33 +254,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   ],
                 ),
 
-                Container(
-                  child: _signingUp
-                      ? const Center(
-                          child: SizedBox(
-                              height: 20,
-                              width: 20,
-                              child: CircularProgressIndicator(
-                                  color: Colors.white)),
-                        )
-                      : MyLoginButton(
-                          mtext: 'Sign up',
-                          onPress: () {
-                            if (isChecked == false ||
-                                _fullNameCtrl.text == '' ||
-                                _emailCtrl.text == '' ||
-                                // _phoneNumberCtrl.text == '' ||
-                                // _dobCtrl.text == '' ||
-                                _passwordCtrl.text == '') {
-                              MessageUtils.voomSnackBarMessage(context,
-                                  'Please all field are required', 'OK');
-                            } else {
-                              _signUpWithEmailAndPassword(
-                                  _emailCtrl.text, _passwordCtrl.text);
-                            }
-                          },
-                        ),
-                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

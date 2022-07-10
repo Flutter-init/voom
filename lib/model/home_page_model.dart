@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/view/card_page.dart';
@@ -165,6 +166,9 @@ class _HomePageModelState extends State<HomePageModel> {
             ),
           ),
         ),
+        systemOverlayStyle: SystemUiOverlayStyle(
+            statusBarColor: kInactiveCardColor,
+            ),
       ),
       body: _screens[_selectedIndex],
     );
