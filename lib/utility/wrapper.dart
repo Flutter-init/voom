@@ -40,7 +40,7 @@ class _WrapperState extends State<Wrapper> {
       }
     }
   }
-
+//TODO 0: solve the problem of going back to onboarding screen after signing out
   checkUserLoggedIn() async {
     WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();

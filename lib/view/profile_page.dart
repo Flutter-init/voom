@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/view/settings_page.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
+
 
 import '../widgets/simple_list_tile.dart';
 
@@ -18,20 +17,13 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  //TODO: Put this image selected in shared preference
-  File? _imageFile;
-  final _picker = ImagePicker();
+
+  
   String invi = 'voom/ref?user?23432';
   final bool _pinned = true;
   final bool _snap = false;
   final bool _floating = false;
 
-  Future<void> _pickImageFromGallery() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() => _imageFile = File(pickedFile.path));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,21 +46,17 @@ class _ProfilePageState extends State<ProfilePage> {
                   padding: EdgeInsets.only(top: 8.0),
                   child: InkWell(
                     splashColor: kActiveCardColor,
-                    onTap: () async => _pickImageFromGallery(),
                     child: CircleAvatar(
                       radius: 32,
                       backgroundColor: kBottomBarItemscolor,
                       child: CircleAvatar(
                         radius: 30,
                         child: ClipOval(
-                          child: (_imageFile == null)
-                              ? Image.asset('images/boy.png')
-                              : Image.file(
-                                  _imageFile!,
-                                  fit: BoxFit.fill,
-                                  width: 60,
-                                  height: 60,
-                                ),
+                          child: 
+                          //TODO 5: For every new user assign a random user avater using an avatar package
+                          // also save this avatar in locally to use in other part of the app
+                              Image.asset('images/boy.png')
+                              
                         ),
                       ),
                     ),

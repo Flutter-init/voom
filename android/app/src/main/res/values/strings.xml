@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string name="app_name">Voom</string>
+<string name="facebook_app_id">744521273454515</string>
+<string name="fb_login_protocol_scheme">fb744521273454515</string>
+<string name="facebook_client_token">e604a965891dee9dfeee1e5299e88555</string>
+</resources>

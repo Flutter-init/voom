@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:voom/services/firebase_service.dart';
 import 'package:voom/view/card_page.dart';
 import 'package:voom/view/home_page.dart';
 import 'package:voom/view/onboarding_page.dart';
@@ -167,8 +168,8 @@ class _HomePageModelState extends State<HomePageModel> {
           ),
         ),
         systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: kInactiveCardColor,
-            ),
+          statusBarColor: kInactiveCardColor,
+        ),
       ),
       body: _screens[_selectedIndex],
     );
@@ -178,6 +179,7 @@ class _HomePageModelState extends State<HomePageModel> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.remove(SharedPreferencesKeys.email.toString());
     await FirebaseAuth.instance.signOut();
+    await FirebaseService().signOutFromGoogle();
     Navigator.popAndPushNamed(context, LoginScreen.id);
   }
 }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:voom/services/firebase_service.dart';
 import 'package:voom/utility/constants.dart';
 
 import '../model/shared_prefs.dart';
@@ -34,6 +35,9 @@ class _LoginScreenState extends State<LoginScreen> {
   final _passwordCtrl = TextEditingController();
 
   bool _logingIn = false;
+  bool _isGoogleLoading = false;
+  bool _isFacebookLoading = false;
+  final FirebaseService _firebaseService = FirebaseService();
 
   @override
   Widget build(BuildContext context) {
@@ -137,21 +141,68 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                   height: 15.0,
                 ),
-                MySocialMediaButton(
-                  buttonColor: Colors.white,
-                  buttonText: 'Login with Google',
-                  icon: FontAwesomeIcons.google,
-                  iconColor: Colors.red,
-                  textColor: Colors.blueGrey,
-                  onPress: () {},
+                Container(
+                  child: _isGoogleLoading
+                      ? const Center(
+                          child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                  color: Colors.white)),
+                        )
+                      : MySocialMediaButton(
+                          buttonColor: Colors.white,
+                          buttonText: 'Login with Google',
+                          icon: FontAwesomeIcons.google,
+                          iconColor: Colors.red,
+                          textColor: Colors.blueGrey,
+                          onPress: () async {
+                            setState(() {
+                              _isGoogleLoading = true;
+                            });
+
+                            try {
+                              await _firebaseService.signInWithGoogle();
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, HomePageModel.id, (route) => false);
+                            } catch (e) {
+                              MessageUtils.voomSnackBarMessage(
+                                  context, e.toString(), 'Dismiss');
+                            }
+                          },
+                        ),
                 ),
-                MySocialMediaButton(
-                  buttonColor: Colors.blue,
-                  buttonText: 'Login with Facebook',
-                  icon: FontAwesomeIcons.facebookF,
-                  iconColor: Colors.white,
-                  textColor: Colors.white,
-                  onPress: () {},
+                Container(
+                  child: _isFacebookLoading
+                      ? const Center(
+                          child: SizedBox(
+                              height: 20,
+                              width: 20,
+                              child: CircularProgressIndicator(
+                                  color: Colors.white)),
+                        )
+                      : MySocialMediaButton(
+                          buttonColor: Colors.blue,
+                          buttonText: 'Sign up with Facebook',
+                          icon: FontAwesomeIcons.facebookF,
+                          iconColor: Colors.white,
+                          textColor: Colors.white,
+                          onPress: () async {
+                            setState(() {
+                              _isFacebookLoading = true;
+                            });
+
+                            FirebaseService service = FirebaseService();
+                            try {
+                              await service.signInWithFacebook();
+                              Navigator.pushNamedAndRemoveUntil(
+                                  context, HomePageModel.id, (route) => false);
+                            } catch (e) {
+                              MessageUtils.voomSnackBarMessage(
+                                  context, e.toString(), 'Dismiss');
+                            }
+                          },
+                        ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

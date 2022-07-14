@@ -58,8 +58,6 @@ class _HomePageState extends State<HomePage> {
     var numItems = 0;
 
     Widget _buildRow(ActivityData activityData) {
-      //TODO: Make this _buildRow() method dynamic also. Therefore:
-      //TODO: therefore, clear the list and if there is no recent activity display the text: 'All your transaction activities will show up here'
       return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -168,7 +166,7 @@ class _HomePageState extends State<HomePage> {
                         //do something
                       },
                       child: Text(
-                        '\$5000.00',
+                        '\$0.00',
                         style: GoogleFonts.poppins(
                             fontSize: 16, color: kmonochromcolorwhite),
                       ),
@@ -188,11 +186,16 @@ class _HomePageState extends State<HomePage> {
                 avatarChild: Image(
                   image: AssetImage('images/logo.png'),
                 ),
-                //TODO: make the name dynamic by getting the name after registration and replacing it ***Barbara Scott***
                 subText: _fullName.isEmpty
                     ? '8300000187\nNo name'
                     : '8300000187\n$_fullName',
-                trailing: "\$3000.00",
+                    //TODO 1: solve the problem of no name, by using either firebase Database
+                    // another solution would be to save the name and other stuffs in Firbase DB
+                    //then use shared preference to save it locally
+                    //
+                    //TODO 2: If the user has used google or facebook to sign up/sign in
+                    //then save the user.name, user.email also from Firebase locally and display it  
+                trailing: "\$0.00",
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -211,8 +214,9 @@ class _HomePageState extends State<HomePage> {
                   IconButton(
                     onPressed: () {
                       Navigator.pushNamed(context, ChartPage.id);
-                      //TODO: draw history histogram
-                      // do something - statistics
+                      //TODO 3: try to fix it but This is not important. If it would take too much energy
+                      // or time remove it
+                    
                     },
                     icon: const Icon(
                       Icons.bar_chart,
@@ -221,7 +225,9 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     onPressed: () {
-                      //TODO: search through all activities
+                      //TODO4: search through all activities
+                      // This and the chart would be part of the ending task
+                      // try to complete it, though it is not of priority now
                       //do something - search for
                       showSearch(
                           context: context,
