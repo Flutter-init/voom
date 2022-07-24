@@ -9,6 +9,7 @@ class MyCircleAvatar extends StatelessWidget {
   late final String img;
   late final Color avataBackCOlor;
 
+  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
   MyCircleAvatar(
       {this.circleRadius = 40.0,
       // required this.iconData,
@@ -21,15 +22,15 @@ class MyCircleAvatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircleAvatar(
       radius: circleRadius,
-      child: Image(
-        image: AssetImage(img),
-      ),
       // child: Icon(
       //   iconData,
       //   size: iconSize,
       //   color: iconColor,
       // ),
       backgroundColor: avataBackCOlor,
+      child: Image(
+        image: AssetImage(img),
+      ),
     );
   }
 }

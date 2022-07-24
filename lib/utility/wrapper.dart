@@ -6,7 +6,6 @@ import 'package:voom/view/onboarding_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../model/shared_prefs.dart';
-import '../view/home_page.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -29,17 +28,18 @@ class _WrapperState extends State<Wrapper> {
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    if (_auth.currentUser != null) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    if (auth.currentUser != null) {
       return const HomePageModel();
     } else {
       if (_isLoggedInBefore == true) {
         return const LoginScreen();
       } else {
-        return OnboardingPage();
+        return const OnboardingPage();
       }
     }
   }
+
 //TODO 0: solve the problem of going back to onboarding screen after signing out
   checkUserLoggedIn() async {
     WidgetsFlutterBinding.ensureInitialized();

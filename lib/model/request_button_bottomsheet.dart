@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
 
@@ -27,7 +26,7 @@ class BuildRequestBottomSheet {
               'US dollar',
               style: GoogleFonts.poppins(color: kmonochromcolor2, fontSize: 16),
             ),
-            leading: CircleAvatar(
+            leading: const CircleAvatar(
               backgroundColor: kSendFABcolor,
               radius: 27,
               child: CircleAvatar(
@@ -48,13 +47,13 @@ class BuildRequestBottomSheet {
               ),
             ),
           ),
-          Padding(
+          const Padding(
             padding: EdgeInsets.symmetric(horizontal: 20),
             child: Divider(
               color: kmonochromcolorBlack,
             ),
           ),
-          ListTileNoIcon(
+          const ListTileNoIcon(
             title: 'Account holder',
             subtitle: 'Barbara Scott',
           ),
@@ -63,7 +62,7 @@ class BuildRequestBottomSheet {
             subtitle: '024444543',
             trailing: IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.help,
                 color: kSendFABcolor,
               ),
@@ -74,7 +73,7 @@ class BuildRequestBottomSheet {
             subtitle: '020004543',
             trailing: IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.help,
                 color: kSendFABcolor,
               ),
@@ -93,7 +92,7 @@ class BuildRequestBottomSheet {
             subtitle: '260 5th Ave\nNew York City, NY 10001\nUnited States',
             trailing: IconButton(
               onPressed: () {},
-              icon: Icon(
+              icon: const Icon(
                 Icons.help,
                 color: kSendFABcolor,
               ),

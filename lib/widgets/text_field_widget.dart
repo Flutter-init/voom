@@ -1,7 +1,8 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MyTextFieldWidget extends StatelessWidget {
   final String hinText;
@@ -47,10 +48,10 @@ class MyTextFieldWidget extends StatelessWidget {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: kmonochromcolorwhite),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: kmonochromcolor2),
           ),
         ),

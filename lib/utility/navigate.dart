@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:voom/model/home_page_model.dart';
 import 'package:voom/view/chart_page.dart';
 import '../view/card_page.dart';
 import '../view/complete_reg_page.dart';
@@ -18,15 +17,14 @@ class Navigate {
     HomePage.id: (context) => const HomePage(),
     CardPage.id: (context) => const CardPage(),
     ProfilePage.id: (context) => const ProfilePage(),
-    BankTransferPage.id: (context) => BankTransferPage(),
+    BankTransferPage.id: (context) => const BankTransferPage(),
     SpacesPage.id: (context) => const SpacesPage(),
     LoginScreen.id: (context) => const LoginScreen(),
     RegistrationPage.id: (context) => const RegistrationPage(),
-    OnboardingPage.id: (context) => OnboardingPage(),
+    OnboardingPage.id: (context) => const OnboardingPage(),
     SuccessSendPage.id: (context) => const SuccessSendPage(),
     SettingsPage.id: (context) => const SettingsPage(),
     CompleteRegistrationPage.id: (context) => const CompleteRegistrationPage(),
     ChartPage.id: (context) => const ChartPage(),
-   
   };
 }

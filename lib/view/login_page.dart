@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/services/firebase_service.dart';
@@ -83,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         color: kmonochromcolorwhite, fontSize: 20),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
                 MyTextFieldWidget(
@@ -138,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       color: kmonochromcolorwhite, fontSize: 20),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 15.0,
                 ),
                 Container(
@@ -163,6 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                             try {
                               await _firebaseService.signInWithGoogle();
+                              if (!mounted) return;
                               Navigator.pushNamedAndRemoveUntil(
                                   context, HomePageModel.id, (route) => false);
                             } catch (e) {
@@ -195,6 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             FirebaseService service = FirebaseService();
                             try {
                               await service.signInWithFacebook();
+                              if (!mounted) return;
                               Navigator.pushNamedAndRemoveUntil(
                                   context, HomePageModel.id, (route) => false);
                             } catch (e) {

@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/services/firebase_service.dart';
 import 'package:voom/view/card_page.dart';
 import 'package:voom/view/home_page.dart';
-import 'package:voom/view/onboarding_page.dart';
 import 'package:voom/view/profile_page.dart';
 
 import 'package:voom/view/spaces_page.dart';
@@ -167,7 +166,7 @@ class _HomePageModelState extends State<HomePageModel> {
             ),
           ),
         ),
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: kInactiveCardColor,
         ),
       ),
@@ -180,6 +179,7 @@ class _HomePageModelState extends State<HomePageModel> {
     await preferences.remove(SharedPreferencesKeys.email.toString());
     await FirebaseAuth.instance.signOut();
     await FirebaseService().signOutFromGoogle();
+    if (!mounted) return;
     Navigator.popAndPushNamed(context, LoginScreen.id);
   }
 }

@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../utility/constants.dart';
@@ -28,8 +30,8 @@ class IconContent extends StatelessWidget {
           child: SizedBox(
             child: Text(
               cardText1,
-              style:
-                  GoogleFonts.poppins(fontSize: 20, color: kmonochromcolorwhite),
+              style: GoogleFonts.poppins(
+                  fontSize: 20, color: kmonochromcolorwhite),
             ),
             // height: 15.0,
           ),

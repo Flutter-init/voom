@@ -1,5 +1,6 @@
+// ignore_for_file: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
-import 'package:voom/utility/constants.dart';
 
 ////////////////////////////////////////////////////////////////////////////////
 // my extracted class for container reuse
@@ -29,12 +30,12 @@ class MyReusableCard extends StatelessWidget {
       child: Container(
         width: width,
         height: height,
-        child: cardChild,
         margin: const EdgeInsets.all(10.0),
         decoration: BoxDecoration(
           color: colour,
           borderRadius: BorderRadius.circular(10.0),
         ),
+        child: cardChild,
       ),
     );
   }

@@ -5,7 +5,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/view/settings_page.dart';
 import 'package:voom/utility/constants.dart';
 
-
 import '../widgets/simple_list_tile.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -17,13 +16,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
-  
   String invi = 'voom/ref?user?23432';
   final bool _pinned = true;
   final bool _snap = false;
   final bool _floating = false;
-
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +39,7 @@ class _ProfilePageState extends State<ProfilePage> {
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: InkWell(
                     splashColor: kActiveCardColor,
                     child: CircleAvatar(
@@ -52,12 +48,10 @@ class _ProfilePageState extends State<ProfilePage> {
                       child: CircleAvatar(
                         radius: 30,
                         child: ClipOval(
-                          child: 
-                          //TODO 5: For every new user assign a random user avater using an avatar package
-                          // also save this avatar in locally to use in other part of the app
-                              Image.asset('images/boy.png')
-                              
-                        ),
+                            child:
+                                //TODO 5: For every new user assign a random user avater using an avatar package
+                                // also save this avatar in locally to use in other part of the app
+                                Image.asset('images/boy.png')),
                       ),
                     ),
                   ),
@@ -100,12 +94,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                   (value) => ScaffoldMessenger.of(context)
                                       .showSnackBar(
                                     SnackBar(
-                                      shape: RoundedRectangleBorder(
+                                      shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
                                         ),
                                       ),
-                                      duration: Duration(seconds: 1),
+                                      duration: const Duration(seconds: 1),
                                       backgroundColor: kSendFABcolor,
                                       content: Text(
                                         'Copied',

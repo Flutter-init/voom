@@ -4,13 +4,12 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/view/success_send_page.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:voom/widgets/my_list_tile_card.dart';
-import 'package:voom/widgets/text_field_widget.dart';
 
 import '../widgets/text_field_with_no_icon.dart';
 
 class BankTransferPage extends StatefulWidget {
   static String id = '/bank_transfer';
-  BankTransferPage({Key? key}) : super(key: key);
+  const BankTransferPage({Key? key}) : super(key: key);
 
   @override
   State<BankTransferPage> createState() => _BankTransferPageState();
@@ -115,22 +114,22 @@ class _BankTransferPageState extends State<BankTransferPage> {
               style: GoogleFonts.poppins(fontSize: 18, color: kmonochromcolor2),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: TextFieldNoIcon(
               hintext: "Recipient's full name",
               textInputType: TextInputType.name,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: TextFieldNoIcon(
               hintext: "ACH routing number",
               textInputType: TextInputType.number,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: TextFieldNoIcon(
               hintext: "Account number",
               textInputType: TextInputType.number,
@@ -142,7 +141,7 @@ class _BankTransferPageState extends State<BankTransferPage> {
               decoration: BoxDecoration(
                 border: Border.all(width: 1, color: kmonochromcolor2),
                 color: kInactiveCardColor,
-                borderRadius: BorderRadius.all(Radius.circular(3)),
+                borderRadius: const BorderRadius.all(Radius.circular(3)),
               ),
               child: ListTile(
                 title: Text(
@@ -168,22 +167,22 @@ class _BankTransferPageState extends State<BankTransferPage> {
               ),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: TextFieldNoIcon(
               hintext: "Amount",
               textInputType: TextInputType.number,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: TextFieldNoIcon(
               hintext: "Reference",
               textInputType: TextInputType.text,
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
             child: TextFieldNoIcon(
               hintext: "Recipient's email address",
               textInputType: TextInputType.emailAddress,

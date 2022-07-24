@@ -5,13 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/model/request_button_bottomsheet.dart';
 import 'package:voom/model/send_button_bottomsheet.dart';
 import 'package:voom/model/shared_prefs.dart';
-import 'package:voom/view/bank_transfer_page.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:voom/view/chart_page.dart';
 
 import '../model/activity_data.dart';
-import '../widgets/bottomsheet_list_tile.dart';
 import '../widgets/column_circle_avatar_text.dart';
 
 import '../widgets/my_list_tile_card.dart';
@@ -183,18 +181,18 @@ class _HomePageState extends State<HomePage> {
               MyListTileCard(
                 header: 'Financial Overview',
                 text: 'Voom savings account',
-                avatarChild: Image(
+                avatarChild: const Image(
                   image: AssetImage('images/logo.png'),
                 ),
                 subText: _fullName.isEmpty
                     ? '8300000187\nNo name'
                     : '8300000187\n$_fullName',
-                    //TODO 1: solve the problem of no name, by using either firebase Database
-                    // another solution would be to save the name and other stuffs in Firbase DB
-                    //then use shared preference to save it locally
-                    //
-                    //TODO 2: If the user has used google or facebook to sign up/sign in
-                    //then save the user.name, user.email also from Firebase locally and display it  
+                //TODO 1: solve the problem of no name, by using either firebase Database
+                // another solution would be to save the name and other stuffs in Firbase DB
+                //then use shared preference to save it locally
+                //
+                //TODO 2: If the user has used google or facebook to sign up/sign in
+                //then save the user.name, user.email also from Firebase locally and display it
                 trailing: "\$0.00",
               ),
               Row(
@@ -216,7 +214,6 @@ class _HomePageState extends State<HomePage> {
                       Navigator.pushNamed(context, ChartPage.id);
                       //TODO 3: try to fix it but This is not important. If it would take too much energy
                       // or time remove it
-                    
                     },
                     icon: const Icon(
                       Icons.bar_chart,
@@ -258,6 +255,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 // margin: EdgeInsets.symmetric(horizontal: 10),
                 height: height * 0.5,
+                decoration: kContainerDeco,
                 child: numItems != 0
                     ? ListView.builder(
                         controller: _controller,
@@ -273,7 +271,6 @@ class _HomePageState extends State<HomePage> {
                           style: GoogleFonts.poppins(color: Colors.white),
                         ),
                       ),
-                decoration: kContainerDeco,
               ),
             ],
           ),

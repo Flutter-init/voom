@@ -7,7 +7,7 @@ import 'package:voom/utility/constants.dart';
 
 class OnboardingPage extends StatefulWidget {
   static String id = '/onboard';
-  OnboardingPage({Key? key}) : super(key: key);
+  const OnboardingPage({Key? key}) : super(key: key);
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();

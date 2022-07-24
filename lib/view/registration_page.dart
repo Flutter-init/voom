@@ -1,11 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/message_utils.dart';
 
 import '../model/shared_prefs.dart';
 import '../model/home_page_model.dart';
-import 'package:firebase_core/firebase_core.dart';
 import '../services/firebase_service.dart';
 import 'login_page.dart';
 import 'package:flutter/material.dart';
@@ -210,6 +208,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
                             try {
                               await _firebaseService.signInWithGoogle();
+                              if (!mounted) return;
                               Navigator.pushNamedAndRemoveUntil(
                                   context, HomePageModel.id, (route) => false);
                             } catch (e) {
@@ -242,6 +241,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             FirebaseService service = FirebaseService();
                             try {
                               await service.signInWithFacebook();
+                              if (!mounted) return;
                               Navigator.pushNamedAndRemoveUntil(
                                   context, HomePageModel.id, (route) => false);
                             } catch (e) {

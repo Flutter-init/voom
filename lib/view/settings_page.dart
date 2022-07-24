@@ -32,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
             SliverAppBar(
               elevation: 0.0,
               leading: IconButton(
-                icon: Icon(FontAwesomeIcons.xmark, color: kSendFABcolor),
+                icon: const Icon(FontAwesomeIcons.xmark, color: kSendFABcolor),
                 onPressed: () {
                   Navigator.pop(context);
                 },
