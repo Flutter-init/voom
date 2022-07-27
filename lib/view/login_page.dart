@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/services/firebase_service.dart';
 import 'package:voom/utility/constants.dart';
 
@@ -124,6 +123,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           mtext: 'Login',
                           onPress: () {
                             _logUserInWithEmailAndPassword(
+                                _emailCtrl.text, _passwordCtrl.text);
+                            SharedPreferencesModel.setSharedPreferences(
                                 _emailCtrl.text, _passwordCtrl.text);
                           },
                         ),
@@ -258,8 +259,8 @@ class _LoginScreenState extends State<LoginScreen> {
       await _auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((uid) => {
-                setSharedPreferences(_emailCtrl.text, _passwordCtrl.text),
-                _emailCtrl.clear(),
+                SharedPreferencesModel.setSharedPreferences(
+                    _emailCtrl.text, _passwordCtrl.text),
                 _passwordCtrl.clear(),
                 Navigator.popAndPushNamed(context, HomePageModel.id),
               })
@@ -271,11 +272,5 @@ class _LoginScreenState extends State<LoginScreen> {
     } finally {
       setState(() => _logingIn = false);
     }
-  }
-
-  setSharedPreferences(String emailAddress, String password) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(
-        SharedPreferencesKeys.email.toString(), emailAddress.toString());
   }
 }

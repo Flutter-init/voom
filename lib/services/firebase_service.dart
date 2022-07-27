@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:voom/model/shared_prefs.dart';
 
 class FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -20,6 +21,9 @@ class FirebaseService {
         idToken: googleSignInAuthentication.idToken,
       );
       await _firebaseAuth.signInWithCredential(credential);
+      SharedPreferencesModel.setSharedPrefsForGoogleAndFacebookSignup(
+          _firebaseAuth.currentUser?.email ?? '',
+          _firebaseAuth.currentUser?.displayName ?? '');
     } on FirebaseAuthException catch (e) {
       if (kDebugMode) {
         print(e.message);
@@ -38,6 +42,10 @@ class FirebaseService {
 
           final userCredential =
               await _firebaseAuth.signInWithCredential(facebookCredential);
+
+          SharedPreferencesModel.setSharedPrefsForGoogleAndFacebookSignup(
+              userCredential.user?.email ?? '',
+              userCredential.user?.displayName ?? '');
 
           return result.status.toString();
 

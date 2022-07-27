@@ -6,22 +6,24 @@ import 'package:google_fonts/google_fonts.dart';
 import '../utility/constants.dart';
 
 class MyListTileCard extends StatelessWidget {
-  final String text;
+  final String? text;
   final String header;
   final VoidCallback? onPress;
   final String trailing;
-  final String subText;
-  final Widget avatarChild;
+  final String? subText;
+  final String? balance;
+  final Widget? avatarChild;
   final Color cardColor;
   final Color textColor;
   final Color subTextColor;
   final Color avatarColor;
   const MyListTileCard(
       {this.header = '',
-      required this.avatarChild,
-      required this.text,
+      this.avatarChild,
+      this.text,
       this.trailing = '',
-      required this.subText,
+      this.subText,
+      this.balance,
       this.onPress,
       this.cardColor = kBottomBarItemscolor,
       this.textColor = kmonochromcolorBlack,
@@ -46,7 +48,10 @@ class MyListTileCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10, left: 20, bottom: 5),
               child: Text(
                 header,
-                style: GoogleFonts.poppins(fontSize: 18, color: textColor),
+                style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    color: textColor,
+                    fontWeight: FontWeight.bold),
               ),
             ),
             ListTile(
@@ -57,17 +62,28 @@ class MyListTileCard extends StatelessWidget {
               leading: CircleAvatar(
                   backgroundColor: avatarColor, child: avatarChild),
               title: Text(
-                text,
+                text ?? '',
                 style: GoogleFonts.poppins(fontSize: 16, color: textColor),
               ),
-              subtitle: Text(
-                subText,
-                // 'BE 2546 2321 3447\nDon Scotus',
-                style: GoogleFonts.poppins(fontSize: 16, color: subTextColor),
-              ),
+              subtitle: RichText(
+                  text: TextSpan(
+                      style: DefaultTextStyle.of(context).style,
+                      text: '',
+                      children: [
+                    TextSpan(
+                      text: subText,
+                      style: GoogleFonts.poppins(
+                          fontSize: 16,
+                          color: textColor,
+                          fontWeight: FontWeight.bold),
+                    )
+                  ])),
               trailing: Text(
                 trailing,
-                style: GoogleFonts.poppins(fontSize: 16, color: textColor),
+                style: GoogleFonts.poppins(
+                    fontSize: 24,
+                    color: textColor,
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ],

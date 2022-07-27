@@ -1,5 +1,9 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:voom/model/firestore_constants.dart';
 import 'package:voom/utility/message_utils.dart';
 
 import '../model/shared_prefs.dart';
@@ -9,7 +13,6 @@ import 'login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import '../widgets/social_media_button.dart';
 import '../widgets/text_field_widget.dart';
@@ -31,8 +34,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
 
   final _fullNameCtrl = TextEditingController();
   final _emailCtrl = TextEditingController();
-  // final _phoneNumberCtrl = TextEditingController();
-  // final _dobCtrl = TextEditingController();
   final _passwordCtrl = TextEditingController();
 
   final _auth = FirebaseAuth.instance;
@@ -42,6 +43,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   final FirebaseService _firebaseService = FirebaseService();
   bool _isGoogleLoading = false;
   bool _isFacebookLoading = false;
+
+  final _firestoreUser = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -100,7 +103,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(
                   height: 15.0,
                 ),
-
                 MyTextFieldWidget(
                   hinText: 'Full name',
                   iconData: FontAwesomeIcons.user,
@@ -113,18 +115,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   textInputType: TextInputType.emailAddress,
                   controller: _emailCtrl,
                 ),
-                // myTextFieldWidget(
-                //   hinText: 'Phone number',
-                //   iconData: Icons.phone,
-                //   textInputType: TextInputType.phone,
-                //   controller: _phoneNumberCtrl,
-                // ),
-                // myTextFieldWidget(
-                //   hinText: 'Date of birth',
-                //   iconData: FontAwesomeIcons.cakeCandles,
-                //   textInputType: TextInputType.number,
-                //   controller: _dobCtrl,
-                // ),
                 MyTextFieldWidget(
                   suffixIcon: GestureDetector(
                     onTap: () {
@@ -161,8 +151,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             if (isChecked == false ||
                                 _fullNameCtrl.text == '' ||
                                 _emailCtrl.text == '' ||
-                                // _phoneNumberCtrl.text == '' ||
-                                // _dobCtrl.text == '' ||
                                 _passwordCtrl.text == '') {
                               MessageUtils.voomSnackBarMessage(context,
                                   'Please all field are required', 'OK');
@@ -185,7 +173,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                 const SizedBox(
                   height: 10.0,
                 ),
-
                 Container(
                   child: _isGoogleLoading
                       ? const Center(
@@ -237,7 +224,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                             setState(() {
                               _isFacebookLoading = true;
                             });
-
                             FirebaseService service = FirebaseService();
                             try {
                               await service.signInWithFacebook();
@@ -305,7 +291,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ],
                 ),
-
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -345,16 +330,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((value) => {
-                setSharedPreferences(
-                  _fullNameCtrl.text,
-                  _emailCtrl.text,
-                ),
-                _emailCtrl.clear(),
-                _passwordCtrl.clear(),
-                // _phoneNumberCtrl.clear(),
-                // _dobCtrl.clear(),
-                _fullNameCtrl.clear(),
-                Navigator.popAndPushNamed(context, HomePageModel.id),
+                SharedPreferencesModel.setSharedPreferences(
+                    _emailCtrl.text, _passwordCtrl.text),
+                _addUserToFireStore()
               })
           .catchError((e) {
         MessageUtils.voomSnackBarMessage(context, e!.message, 'Dismiss');
@@ -364,14 +342,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
     }
   }
 
-  setSharedPreferences(String fullName, String emailAddress) async {
-    final prefs = await SharedPreferences.getInstance();
-    prefs.setString(
-        SharedPreferencesKeys.fullName.toString(), fullName.toString());
-    prefs.setString(
-        SharedPreferencesKeys.email.toString(), emailAddress.toString());
-    // prefs.setString(
-    //     SharedPreferencesKeys.phone.toString(), phoneNumber.toString());
-    // prefs.setString(SharedPreferencesKeys.dob.toString(), dob.toString());
+  Future<void> _addUserToFireStore() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return _firestoreUser.collection('Users').doc(_fullNameCtrl.text).set({
+      FireStoreConstants.fullName: _fullNameCtrl.text,
+      FireStoreConstants.emailAddress: _emailCtrl.text,
+      FireStoreConstants.password: _passwordCtrl.text,
+    }).then((value) {
+      if (kDebugMode) {
+        print('User Added to firestore db with Name: ${_fullNameCtrl.text}');
+      }
+      prefs.setString(SharedPreferencesModel.documentId,
+          '${_fullNameCtrl.text}: ${_auth.currentUser?.uid}');
+      _emailCtrl.clear();
+      _passwordCtrl.clear();
+      _fullNameCtrl.clear();
+      Navigator.popAndPushNamed(context, HomePageModel.id);
+    }).catchError((onError) {
+      if (kDebugMode) {
+        print('addition failed: onError $onError');
+      }
+    });
   }
 }

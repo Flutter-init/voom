@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:colorize_text_avatar/colorize_text_avatar.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:search_page/search_page.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +13,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:voom/view/chart_page.dart';
 
 import '../model/activity_data.dart';
+import '../model/firestore_constants.dart';
 import '../widgets/column_circle_avatar_text.dart';
 
 import '../widgets/my_list_tile_card.dart';
@@ -25,14 +29,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final ScrollController _controller = ScrollController();
 
-  String _fullName = '';
-
-  getName() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    _fullName = prefs.getString(SharedPreferencesKeys.fullName.toString())!;
-    return _fullName;
-  }
-
   var items = [
     ActivityData(
         '01 July 2022', 'Purchased XBox at Amazon', 'Spent', '\$30.09'),
@@ -43,11 +39,15 @@ class _HomePageState extends State<HomePage> {
         '23 July 2022', 'Money to Jason statham', 'Received', '\$5000.09'),
   ];
 
+  String? _docId;
+
   @override
   initState() {
     super.initState();
-    getName();
+    getUserCredentials();
   }
+
+  final userFromFirestore = FirebaseFirestore.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -65,6 +65,7 @@ class _HomePageState extends State<HomePage> {
             textColor: kmonochromcolorwhite,
             avatarColor: kBottomBarItemscolor,
             header: activityData.header!,
+            balance: numItems.toString(),
             text: activityData.text!,
             avatarChild: const Icon(
               Icons.credit_card,
@@ -178,22 +179,51 @@ class _HomePageState extends State<HomePage> {
                   color: kmonochromcolorwhite,
                 ),
               ),
-              MyListTileCard(
-                header: 'Financial Overview',
-                text: 'Voom savings account',
-                avatarChild: const Image(
-                  image: AssetImage('images/logo.png'),
-                ),
-                subText: _fullName.isEmpty
-                    ? '8300000187\nNo name'
-                    : '8300000187\n$_fullName',
-                //TODO 1: solve the problem of no name, by using either firebase Database
-                // another solution would be to save the name and other stuffs in Firbase DB
-                //then use shared preference to save it locally
-                //
-                //TODO 2: If the user has used google or facebook to sign up/sign in
-                //then save the user.name, user.email also from Firebase locally and display it
-                trailing: "\$0.00",
+              FutureBuilder<DocumentSnapshot>(
+                future: userFromFirestore
+                    .collection('Users')
+                    .doc('Ephraim Umunnakwe: iZ569zga16Xuw59OeKOoNeqcud23')
+                    .get(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Text("Something went wrong");
+                  }
+
+                  if (snapshot.hasData && !snapshot.data!.exists) {
+                    return const Text("Document does not exist");
+                  }
+                  if (snapshot.connectionState == ConnectionState.done) {
+                    Map<String, dynamic> data =
+                        snapshot.data!.data() as Map<String, dynamic>;
+                    return MyListTileCard(
+                      balance: '\$0',
+                      header: 'Financial Overview',
+                      text: 'Voom savings account',
+                      avatarChild: TextAvatar(
+                        text: data[FireStoreConstants.fullName],
+                        numberLetters: 2,
+                      ),
+                      subText: snapshot.hasData
+                          ? '${data[FireStoreConstants.fullName]}'
+                          : 'No name',
+                      //TODO 2: If the user has used google or facebook to sign up/sign in
+                      //then save the user.name, user.email also from Firebase locally and display it
+                      trailing: "\$0.00",
+                    );
+                  }
+                  return const MyListTileCard(
+                    balance: '\$0.00',
+                    header: 'Financial Overview',
+                    text: 'Voom savings account',
+                    avatarChild: Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    subText: '...',
+                    //TODO 2: If the user has used google or facebook to sign up/sign in
+                    //then save the user.name, user.email also from Firebase locally and display it
+                    trailing: "\$0.00",
+                  );
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -222,7 +252,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     onPressed: () {
-                      //TODO4: search through all activities
+                      //TODO 4: search through all activities
                       // This and the chart would be part of the ending task
                       // try to complete it, though it is not of priority now
                       //do something - search for
@@ -277,5 +307,18 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
     );
+  }
+
+  getUserCredentials() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String docId = prefs.getString(SharedPreferencesModel.documentId) ?? '';
+    setState(() {
+      _docId = docId;
+    });
+
+    if (kDebugMode) {
+      print("This is the document Id locally $_docId");
+      print("This is the document Id storedinsharedprefs $docId");
+    }
   }
 }

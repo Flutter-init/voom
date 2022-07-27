@@ -47,11 +47,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       backgroundColor: kBottomBarItemscolor,
                       child: CircleAvatar(
                         radius: 30,
-                        child: ClipOval(
-                            child:
-                                //TODO 5: For every new user assign a random user avater using an avatar package
-                                // also save this avatar in locally to use in other part of the app
-                                Image.asset('images/boy.png')),
+                        child: ClipOval(child: Image.asset('images/boy.png')),
                       ),
                     ),
                   ),

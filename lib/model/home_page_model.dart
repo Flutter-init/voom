@@ -176,10 +176,13 @@ class _HomePageModelState extends State<HomePageModel> {
 
   Future<void> logUserOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.remove(SharedPreferencesKeys.email.toString());
+    await preferences.remove(SharedPreferencesModel.email.toString());
+    await preferences.setBool(
+        SharedPreferencesModel.loginStatus.toString(), true);
     await FirebaseAuth.instance.signOut();
     await FirebaseService().signOutFromGoogle();
     if (!mounted) return;
-    Navigator.popAndPushNamed(context, LoginScreen.id);
+    Navigator.pushNamedAndRemoveUntil(
+        context, LoginScreen.id, (Route<dynamic> route) => false);
   }
 }

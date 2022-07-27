@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,6 +33,9 @@ class _BankTransferPageState extends State<BankTransferPage> {
   String? _selectedVal;
   bool _isRTSwitchOn = false;
   bool _isTemplateSwitchOn = false;
+
+  final fireStoreUser = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -95,10 +99,11 @@ class _BankTransferPageState extends State<BankTransferPage> {
           const MyListTileCard(
             header: 'Financial Overview',
             text: 'Voom savings account',
+            balance: '0.00',
             avatarChild: Image(
               image: AssetImage('images/logo.png'),
             ),
-            subText: '8300000187\nBarbara Scott',
+            subText: 'Barbara Scott',
             trailing: "\$3000.00",
           ),
           const Padding(
