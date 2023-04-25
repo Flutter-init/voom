@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
 
-class MColumnCircleNText extends StatelessWidget {
+class MyColumnCircleAvaterNText extends StatelessWidget {
   final IconData iconData;
   final Color iconColor;
   final Color avatarColor;
   final String text;
   final VoidCallback? onPress;
-  MColumnCircleNText(
+  // ignore: use_key_in_widget_constructors
+  const MyColumnCircleAvaterNText(
       {this.avatarColor = kActiveCardColor,
       this.iconColor = kBottomBarItemscolor,
       required this.iconData,

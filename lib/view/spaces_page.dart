@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:voom/widgets/simpleCardListTile.dart';
+import 'package:voom/widgets/simple_card_list_tile.dart';
 
 class SpacesPage extends StatefulWidget {
-  static String id = '/spacesPage';
+  static String id = '/spaces_page';
   const SpacesPage({Key? key}) : super(key: key);
 
   @override

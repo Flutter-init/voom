@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lottie/lottie.dart';
-import 'package:voom/pages/home_state.dart';
+import 'package:voom/model/home_page_model.dart';
 import 'package:voom/utility/constants.dart';
-import 'dart:ui' as ui;
 
-import 'package:voom/widgets/bottomSheet_listTile.dart';
+import 'package:voom/widgets/bottomsheet_list_tile.dart';
 import 'package:voom/widgets/login_button.dart';
 
 class SuccessSendPage extends StatelessWidget {
@@ -15,6 +14,7 @@ class SuccessSendPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: kInactiveCardColor,
@@ -42,6 +42,7 @@ class SuccessSendPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 30, left: 10, right: 10),
             child: Container(
+              decoration: kContainerDeco.copyWith(color: kActiveCardColor),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -97,7 +98,7 @@ class SuccessSendPage extends StatelessWidget {
                           fontWeight: FontWeight.w800),
                     ),
                   ),
-                  BottomSheetListTile(
+                  const BottomSheetListTile(
                     avaColor: kmonochromcolorwhite,
                     iconColor: kInactiveCardColor,
                     iconData: FontAwesomeIcons.userInjured,
@@ -107,15 +108,14 @@ class SuccessSendPage extends StatelessWidget {
                   ),
                 ],
               ),
-              decoration: kContainerDeco.copyWith(color: kActiveCardColor),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 20),
-            child: myLoginButton(
+            child: MyLoginButton(
                 mtext: 'Continue',
                 onPress: () {
-                  Navigator.popAndPushNamed(context, HomeState.id);
+                  Navigator.popAndPushNamed(context, HomePageModel.id);
                 }),
           ),
         ],

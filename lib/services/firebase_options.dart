@@ -47,30 +47,30 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyDWvxqeqgX3-oZsDaPF1iJA-Oi5nuI-Gmg',
-    appId: '1:133042323045:web:5981f4140bf1468c07508c',
-    messagingSenderId: '133042323045',
-    projectId: 'voom-69971',
-    authDomain: 'voom-69971.firebaseapp.com',
-    storageBucket: 'voom-69971.appspot.com',
-    measurementId: 'G-BJBC3VQ0W3',
+    apiKey: 'SECRET',
+    appId: 'SECRET',
+    messagingSenderId: 'SECRET',
+    projectId: 'SECRET',
+    authDomain: 'SECRET',
+    storageBucket: 'SECRET',
+    measurementId: 'SECRET',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyD2DhTiYIDyP7owFJ9affJrEjI_HRSW4Bc',
-    appId: '1:133042323045:android:7c1b8dd9de1897cd07508c',
-    messagingSenderId: '133042323045',
-    projectId: 'voom-69971',
-    storageBucket: 'voom-69971.appspot.com',
+    apiKey: 'SECRET',
+    appId: 'SECRET',
+    messagingSenderId: 'SECRET',
+    projectId: 'SECRET',
+    storageBucket: 'SECRET',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCUYgwSQVFJbeuJO3uLMM2ln4PPs2OTJ1A',
-    appId: '1:133042323045:ios:297390105fdb9d1807508c',
-    messagingSenderId: '133042323045',
-    projectId: 'voom-69971',
-    storageBucket: 'voom-69971.appspot.com',
-    iosClientId: '133042323045-731m7j70un2uoqrfdib6orn8dqqtfopj.apps.googleusercontent.com',
-    iosBundleId: 'com.example.voom',
+    apiKey: 'SECRET',
+    appId: 'SECRET',
+    messagingSenderId: 'SECRET',
+    projectId: 'SECRET',
+    storageBucket: 'SECRET',
+    iosClientId: 'SECRET',
+    iosBundleId: 'SECRET',
   );
 }

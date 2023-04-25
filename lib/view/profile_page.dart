@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:voom/pages/settingsPage.dart';
+import 'package:voom/view/settings_page.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:image_picker/image_picker.dart';
-import 'dart:io';
 
-import '../widgets/m_list_tile.dart';
+import '../widgets/simple_list_tile.dart';
 
 class ProfilePage extends StatefulWidget {
-  static String id = '/profilePage';
+  static String id = '/profile_page';
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
@@ -18,20 +16,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  //TODO: Put this image selected in shared preference
-  File? _imageFile;
-  final _picker = ImagePicker();
   String invi = 'voom/ref?user?23432';
   final bool _pinned = true;
   final bool _snap = false;
   final bool _floating = false;
-
-  Future<void> _pickImageFromGallery() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() => _imageFile = File(pickedFile.path));
-    }
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,25 +39,15 @@ class _ProfilePageState extends State<ProfilePage> {
               flexibleSpace: FlexibleSpaceBar(
                 centerTitle: true,
                 title: Padding(
-                  padding: EdgeInsets.only(top: 8.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: InkWell(
                     splashColor: kActiveCardColor,
-                    onTap: () async => _pickImageFromGallery(),
                     child: CircleAvatar(
                       radius: 32,
                       backgroundColor: kBottomBarItemscolor,
                       child: CircleAvatar(
                         radius: 30,
-                        child: ClipOval(
-                          child: (_imageFile == null)
-                              ? Image.asset('images/boy.png')
-                              : Image.file(
-                                  _imageFile!,
-                                  fit: BoxFit.fill,
-                                  width: 60,
-                                  height: 60,
-                                ),
-                        ),
+                        child: ClipOval(child: Image.asset('images/boy.png')),
                       ),
                     ),
                   ),
@@ -112,12 +90,12 @@ class _ProfilePageState extends State<ProfilePage> {
                                   (value) => ScaffoldMessenger.of(context)
                                       .showSnackBar(
                                     SnackBar(
-                                      shape: RoundedRectangleBorder(
+                                      shape: const RoundedRectangleBorder(
                                         borderRadius: BorderRadius.all(
                                           Radius.circular(10.0),
                                         ),
                                       ),
-                                      duration: Duration(seconds: 1),
+                                      duration: const Duration(seconds: 1),
                                       backgroundColor: kSendFABcolor,
                                       content: Text(
                                         'Copied',
@@ -182,49 +160,49 @@ class _ProfilePageState extends State<ProfilePage> {
                           color: kmonochromcolorwhite,
                         ),
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.settings,
                         text: 'General settings',
                         onPress: () {
                           Navigator.pushNamed(context, SettingsPage.id);
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.account_balance,
                         text: 'Account details',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.calendar_month,
                         text: 'Scheduled transfers',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.fax,
                         text: 'Receive by email or phone',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.menu_book,
                         text: 'Statement of account',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.route,
                         text: 'Automatic currency conversion',
                         onPress: () {
                           //do something
                         },
                       ),
-                      MListTile(
+                      MySimpleListTile(
                         iconData: Icons.line_weight,
                         text: 'Account limits',
                         onPress: () {

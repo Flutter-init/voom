@@ -6,6 +6,7 @@ class TextFieldNoIcon extends StatefulWidget {
   final String hintext;
   final Function(String)? onChange;
   final TextInputType textInputType;
+  // ignore: use_key_in_widget_constructors
   const TextFieldNoIcon(
       {this.onChange, required this.hintext, required this.textInputType});
 
@@ -26,10 +27,10 @@ class _TextFieldNoIconState extends State<TextFieldNoIcon> {
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(5.0),
           ),
-          focusedBorder: OutlineInputBorder(
+          focusedBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: kmonochromcolorwhite),
           ),
-          enabledBorder: OutlineInputBorder(
+          enabledBorder: const OutlineInputBorder(
             borderSide: BorderSide(color: kmonochromcolor2),
           ),
         ),

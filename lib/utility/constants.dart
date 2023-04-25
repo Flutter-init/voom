@@ -1,5 +1,13 @@
 import 'package:flutter/material.dart';
 
+// api keys
+const String kPayStackPublicKeyAPI =
+    'pk_test_7a51da3d5b59de9b3fa0ebffc7bd75defb837203';
+const String kFlutterwavePublicKeyAPI =
+    'FLWPUBK_TEST-748dea6cf0066f05552d7998572c18d3-X';
+const String kFlutterwaveEnkrypKeyAPI = 'FLWSECK_TEST6b8a6e9cd15e';
+const String kHerokuCallback = 'https://berncovoom.herokuapp.com/';
+
 // monochromatic color palette
 const kmonochromcolor1 = Color(0xffe6e6e6);
 const kmonochromcolor2 = Color(0xff979797);
