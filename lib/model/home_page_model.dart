@@ -5,10 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/services/firebase_service.dart';
 import 'package:voom/view/card_page.dart';
 import 'package:voom/view/home_page.dart';
-import 'package:voom/view/onboarding_page.dart';
+
 import 'package:voom/view/profile_page.dart';
 
 import 'package:voom/view/spaces_page.dart';
+import '../view/paystack_trans.dart';
 import 'shared_prefs.dart';
 import '../widgets/drawer_list_tile.dart';
 import 'package:voom/widgets/logout_list_tile.dart';
@@ -108,7 +109,9 @@ class _HomePageModelState extends State<HomePageModel> {
             ),
             DrawerListTile(
               txt: 'Help',
-              onPress: () {},
+              onPress: () {
+                Navigator.pushNamed(context, PaystackTrans.id);
+              },
               icon: Icons.help,
             ),
             DrawerListTile(

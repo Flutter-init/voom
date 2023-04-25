@@ -5,13 +5,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/model/request_button_bottomsheet.dart';
 import 'package:voom/model/send_button_bottomsheet.dart';
 import 'package:voom/model/shared_prefs.dart';
-import 'package:voom/view/bank_transfer_page.dart';
 import 'package:voom/utility/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:voom/view/chart_page.dart';
 
 import '../model/activity_data.dart';
-import '../widgets/bottomsheet_list_tile.dart';
 import '../widgets/column_circle_avatar_text.dart';
 
 import '../widgets/my_list_tile_card.dart';
@@ -166,7 +164,7 @@ class _HomePageState extends State<HomePage> {
                         //do something
                       },
                       child: Text(
-                        '\$0.00',
+                        '\$3169.06',
                         style: GoogleFonts.poppins(
                             fontSize: 16, color: kmonochromcolorwhite),
                       ),
@@ -187,7 +185,7 @@ class _HomePageState extends State<HomePage> {
                   image: AssetImage('images/logo.png'),
                 ),
                 subText: _fullName.isEmpty
-                    ? '8300000187\nNo name'
+                    ? '8300000187\nBarbara Scott'
                     : '8300000187\n$_fullName',
                     //TODO 1: solve the problem of no name, by using either firebase Database
                     // another solution would be to save the name and other stuffs in Firbase DB
@@ -195,7 +193,7 @@ class _HomePageState extends State<HomePage> {
                     //
                     //TODO 2: If the user has used google or facebook to sign up/sign in
                     //then save the user.name, user.email also from Firebase locally and display it  
-                trailing: "\$0.00",
+                trailing: "\$3169.06",
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -213,6 +211,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   IconButton(
                     onPressed: () {
+                      
                       Navigator.pushNamed(context, ChartPage.id);
                       //TODO 3: try to fix it but This is not important. If it would take too much energy
                       // or time remove it
