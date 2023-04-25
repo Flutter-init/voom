@@ -10,7 +10,7 @@ class FirebaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  Future<String?> signInWithGoogle() async {
+  Future<void> signInWithGoogle() async {
     try {
       final GoogleSignInAccount? googleSignInAccount =
           await _googleSignIn.signIn();
@@ -21,14 +21,9 @@ class FirebaseService {
         idToken: googleSignInAuthentication.idToken,
       );
       await _firebaseAuth.signInWithCredential(credential);
-      SharedPreferencesModel.setSharedPrefsForGoogleAndFacebookSignup(
-          _firebaseAuth.currentUser?.email ?? '',
-          _firebaseAuth.currentUser?.displayName ?? '');
-    } on FirebaseAuthException catch (e) {
-      if (kDebugMode) {
-        print(e.message);
-      }
+    } on FirebaseAuthException {
       rethrow;
+      
     }
   }
 

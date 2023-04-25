@@ -8,8 +8,8 @@ class MyColumnCircleAvaterNText extends StatelessWidget {
   final Color avatarColor;
   final String text;
   final VoidCallback? onPress;
-  // ignore: prefer_const_constructors_in_immutables, use_key_in_widget_constructors
-  MyColumnCircleAvaterNText(
+  // ignore: use_key_in_widget_constructors
+  const MyColumnCircleAvaterNText(
       {this.avatarColor = kActiveCardColor,
       this.iconColor = kBottomBarItemscolor,
       required this.iconData,
