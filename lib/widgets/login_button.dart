@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
@@ -13,10 +15,6 @@ class MyLoginButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30.0),
       child: TextButton(
-        child: Text(
-          mtext,
-          style: GoogleFonts.poppins(color: kmonochromcolorBlack, fontSize: 20),
-        ),
         style: ButtonStyle(
           backgroundColor: MaterialStateProperty.all(kBottomBarItemscolor),
           shape: MaterialStateProperty.all(
@@ -26,6 +24,10 @@ class MyLoginButton extends StatelessWidget {
           ),
         ),
         onPressed: onPress,
+        child: Text(
+          mtext,
+          style: GoogleFonts.poppins(color: kmonochromcolorBlack, fontSize: 20),
+        ),
       ),
     );
   }

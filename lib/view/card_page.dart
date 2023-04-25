@@ -1,7 +1,8 @@
+// ignore_for_file: avoid_types_as_parameter_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:voom/utility/constants.dart';
-import 'package:voom/widgets/my_reuseable_card.dart';
 import '../widgets/simple_list_tile.dart';
 import 'package:flutter_credit_card/flutter_credit_card.dart';
 

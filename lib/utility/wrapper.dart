@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:voom/model/home_page_model.dart';
@@ -6,7 +7,6 @@ import 'package:voom/view/onboarding_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../model/shared_prefs.dart';
-import '../view/home_page.dart';
 
 class Wrapper extends StatefulWidget {
   const Wrapper({Key? key}) : super(key: key);
@@ -16,50 +16,67 @@ class Wrapper extends StatefulWidget {
 }
 
 class _WrapperState extends State<Wrapper> {
+  // ignore: prefer_final_fields
   bool _isLoggedIn = false;
-  bool _isLoggedInBefore = false;
+  bool _isLoggedInBefore = true;
 
   @override
   void initState() {
     super.initState();
-    // startTimer();
     checkUserLoggedIn();
-    checkIfFirstTimer();
+    checkIfFirstTimer(_isLoggedIn);
   }
 
   @override
   Widget build(BuildContext context) {
-    final FirebaseAuth _auth = FirebaseAuth.instance;
-    if (_auth.currentUser != null) {
+    final FirebaseAuth auth = FirebaseAuth.instance;
+    if (auth.currentUser != null) {
+      _isLoggedIn = true;
       return const HomePageModel();
     } else {
-      if (_isLoggedInBefore == true) {
-        return const LoginScreen();
-      } else {
-        return OnboardingPage();
-      }
-    }
-  }
-//TODO 0: solve the problem of going back to onboarding screen after signing out
-  checkUserLoggedIn() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (prefs.containsKey(SharedPreferencesKeys.email.toString())) {
-      _isLoggedIn = true;
-      return _isLoggedIn;
-    } else {
-      _isLoggedIn = false;
-      return _isLoggedIn;
+      return FutureBuilder<bool>(
+          future: checkIfFirstTimer(_isLoggedIn),
+          builder: (context, snapshot) {
+            if (snapshot.data == true) {
+              if (kDebugMode) {
+                print('inside login check ${snapshot.data}');
+              }
+              return const LoginScreen();
+            } else {
+              if (kDebugMode) {
+                print('inside onboarding check ${snapshot.data}');
+              }
+              return const OnboardingPage();
+            }
+          });
     }
   }
 
-  checkIfFirstTimer() async {
+  checkUserLoggedIn() async {
+    WidgetsFlutterBinding.ensureInitialized();
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    if (_isLoggedIn == false) {
-      if (prefs.containsKey(SharedPreferencesKeys.email.toString())) {
-        _isLoggedInBefore = prefs.getBool('loggedInBefore')!;
+    if (kDebugMode) {
+      print(
+          'has the email key ${prefs.containsKey(SharedPreferencesModel.email.toString())}');
+    }
+    return _isLoggedIn =
+        prefs.containsKey(SharedPreferencesModel.email.toString());
+  }
+
+  Future<bool> checkIfFirstTimer(bool loginStatus) async {
+    if (loginStatus == false) {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if (prefs.containsKey(SharedPreferencesModel.password.toString())) {
+        _isLoggedInBefore =
+            prefs.getBool(SharedPreferencesModel.loginStatus.toString()) ??
+                false;
+        if (kDebugMode) {
+          print(
+              'logged in before? $_isLoggedInBefore + logged in? $_isLoggedIn');
+        }
         return _isLoggedInBefore;
       }
     }
+    throw Exception('There was an error');
   }
 }

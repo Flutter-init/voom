@@ -170,7 +170,7 @@ class _HomePageModelState extends State<HomePageModel> {
             ),
           ),
         ),
-        systemOverlayStyle: SystemUiOverlayStyle(
+        systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: kInactiveCardColor,
         ),
       ),
@@ -180,9 +180,13 @@ class _HomePageModelState extends State<HomePageModel> {
 
   Future<void> logUserOut() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
-    await preferences.remove(SharedPreferencesKeys.email.toString());
+    await preferences.remove(SharedPreferencesModel.email.toString());
+    await preferences.setBool(
+        SharedPreferencesModel.loginStatus.toString(), true);
     await FirebaseAuth.instance.signOut();
     await FirebaseService().signOutFromGoogle();
-    Navigator.popAndPushNamed(context, LoginScreen.id);
+    if (!mounted) return;
+    Navigator.pushNamedAndRemoveUntil(
+        context, LoginScreen.id, (Route<dynamic> route) => false);
   }
 }
