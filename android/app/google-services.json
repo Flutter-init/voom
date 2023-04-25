@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "133042323045",
+    "project_id": "voom-69971",
+    "storage_bucket": "voom-69971.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:133042323045:android:7c1b8dd9de1897cd07508c",
+        "android_client_info": {
+          "package_name": "com.example.voom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "133042323045-61s6bdt247j2jm77n5j9p2da8624ivca.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.voom",
+            "certificate_hash": "8c9fed7037d49d9531e0c40a778db1f99397d6e9"
+          }
+        },
+        {
+          "client_id": "133042323045-1tijcuq5v3r9ojle82mrosle56h6jpsf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2DhTiYIDyP7owFJ9affJrEjI_HRSW4Bc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "133042323045-1tijcuq5v3r9ojle82mrosle56h6jpsf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "133042323045-731m7j70un2uoqrfdib6orn8dqqtfopj.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.voom"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
