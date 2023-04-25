@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:133042323045:ios:297390105fdb9d1807508c",
-  "FIREBASE_PROJECT_ID": "voom-69971",
-  "GCM_SENDER_ID": "133042323045"
+  "GOOGLE_APP_ID": "SECRET",
+  "FIREBASE_PROJECT_ID": "SECRET",
+  "GCM_SENDER_ID": "SECRET"
 }
