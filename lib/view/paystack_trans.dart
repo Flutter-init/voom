@@ -1,9 +1,11 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_paystack/flutter_paystack.dart';
 import 'package:voom/utility/constants.dart';
+// ignore: depend_on_referenced_packages
 import 'package:http/http.dart' as http;
 
 class PaystackTrans extends StatefulWidget {
@@ -22,7 +24,7 @@ class _PaystackTransState extends State<PaystackTrans> {
   String publicKey = kPayStackPublicKeyAPI;
   String backendUrl = kHerokuCallback;
   final plugin = PaystackPlugin();
-  var _border = Container(
+  final _border = Container(
     width: double.infinity,
     height: 1.0,
     color: Colors.red,
@@ -45,7 +47,7 @@ class _PaystackTransState extends State<PaystackTrans> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(title: Text('Anne')),
+      appBar: AppBar(title: const Text('Anne')),
       body: Container(
         padding: const EdgeInsets.all(20.0),
         child: Form(
@@ -57,8 +59,8 @@ class _PaystackTransState extends State<PaystackTrans> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
-                    Expanded(
-                      child: const Text('Initalize transaction from:'),
+                    const Expanded(
+                      child: Text('Initalize transaction from:'),
                     ),
                     Expanded(
                       child: Column(
@@ -84,7 +86,7 @@ class _PaystackTransState extends State<PaystackTrans> {
                 _verticalSizeBox,
                 TextFormField(
                   decoration: const InputDecoration(
-                    border: const UnderlineInputBorder(),
+                    border: UnderlineInputBorder(),
                     labelText: 'Card number',
                   ),
                   onSaved: (String? value) => _cardNumber = value,
@@ -97,7 +99,7 @@ class _PaystackTransState extends State<PaystackTrans> {
                     Expanded(
                       child: TextFormField(
                         decoration: const InputDecoration(
-                          border: const UnderlineInputBorder(),
+                          border: UnderlineInputBorder(),
                           labelText: 'CVV',
                         ),
                         onSaved: (String? value) => _cvv = value,
@@ -107,7 +109,7 @@ class _PaystackTransState extends State<PaystackTrans> {
                     Expanded(
                       child: TextFormField(
                         decoration: const InputDecoration(
-                          border: const UnderlineInputBorder(),
+                          border: UnderlineInputBorder(),
                           labelText: 'Expiry Month',
                         ),
                         onSaved: (String? value) =>
@@ -118,7 +120,7 @@ class _PaystackTransState extends State<PaystackTrans> {
                     Expanded(
                       child: TextFormField(
                         decoration: const InputDecoration(
-                          border: const UnderlineInputBorder(),
+                          border: UnderlineInputBorder(),
                           labelText: 'Expiry Year',
                         ),
                         onSaved: (String? value) =>
@@ -130,11 +132,11 @@ class _PaystackTransState extends State<PaystackTrans> {
                 _verticalSizeBox,
                 Theme(
                   data: Theme.of(context).copyWith(
-                    accentColor: green,
+                    hintColor: green,
                     primaryColorLight: Colors.white,
                     primaryColorDark: navyBlue,
                     textTheme: Theme.of(context).textTheme.copyWith(
-                          bodyText2: TextStyle(
+                          bodyMedium: const TextStyle(
                             color: lightBlue,
                           ),
                         ),
@@ -146,8 +148,8 @@ class _PaystackTransState extends State<PaystackTrans> {
                               alignment: Alignment.center,
                               height: 50.0,
                               child: Platform.isIOS
-                                  ? CupertinoActivityIndicator()
-                                  : CircularProgressIndicator(),
+                                  ? const CupertinoActivityIndicator()
+                                  : const CircularProgressIndicator(),
                             )
                           : Column(
                               mainAxisSize: MainAxisSize.min,
@@ -156,7 +158,7 @@ class _PaystackTransState extends State<PaystackTrans> {
                                     'Charge Card', () => _startAfreshCharge()),
                                 _verticalSizeBox,
                                 _border,
-                                SizedBox(
+                                const SizedBox(
                                   height: 40.0,
                                 ),
                                 Row(
@@ -196,7 +198,7 @@ class _PaystackTransState extends State<PaystackTrans> {
                                     _horizontalSizeBox,
                                     Flexible(
                                       flex: 2,
-                                      child: Container(
+                                      child: SizedBox(
                                         width: double.infinity,
                                         child: _getPlatformButton(
                                           'Checkout',
@@ -245,14 +247,17 @@ void _handleRadioValueChanged(int? value) {
     }
 
     try {
+      // ignore: use_build_context_synchronously
       CheckoutResponse response = await plugin.checkout(
         context,
         method: _method,
         charge: charge,
         fullscreen: false,
-        logo: MyLogo(),
+        logo: const MyLogo(),
       );
-      print('Response = $response');
+      if (kDebugMode) {
+        print('Response = $response');
+      }
       setState(() => _inProgress = false);
       _updateStatus(response.reference, '$response');
     } catch (e) {
@@ -355,20 +360,20 @@ void _handleRadioValueChanged(int? value) {
     // is still in progress
     Widget widget;
     if (Platform.isIOS) {
-      widget = new CupertinoButton(
+      widget = CupertinoButton(
         onPressed: function,
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
         color: CupertinoColors.activeBlue,
-        child: new Text(
+        child: Text(
           string,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
       );
     } else {
-      widget = new ElevatedButton(
+      widget = ElevatedButton(
         onPressed: function,
-        child: new Text(
+        child: Text(
           string.toUpperCase(),
           style: const TextStyle(fontSize: 17.0),
         ),
@@ -381,10 +386,14 @@ void _handleRadioValueChanged(int? value) {
     String url = '$backendUrl/new-access-code';
     String? accessCode;
     try {
-      print("Access code url = $url");
+      if (kDebugMode) {
+        print("Access code url = $url");
+      }
       http.Response response = await http.get(Uri.parse(url));
       accessCode = response.body;
-      print('Response for access code = $accessCode');
+      if (kDebugMode) {
+        print('Response for access code = $accessCode');
+      }
     } catch (e) {
       setState(() => _inProgress = false);
       _updateStatus(
@@ -413,16 +422,17 @@ void _handleRadioValueChanged(int? value) {
   }
 
   _updateStatus(String? reference, String message) {
+    // ignore: unnecessary_string_escapes
     _showMessage('Reference: $reference \n\ Response: $message',
         const Duration(seconds: 7));
   }
 
   _showMessage(String message,
       [Duration duration = const Duration(seconds: 4)]) {
-    ScaffoldMessenger.of(context).showSnackBar(new SnackBar(
-      content: new Text(message),
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(message),
       duration: duration,
-      action: new SnackBarAction(
+      action: SnackBarAction(
           label: 'CLOSE',
           onPressed: () =>
               ScaffoldMessenger.of(context).removeCurrentSnackBar()),
@@ -448,16 +458,18 @@ CheckoutMethod _parseStringToMethod(String string) {
 }
 
 class MyLogo extends StatelessWidget {
+  const MyLogo({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         shape: BoxShape.circle,
         color: Colors.black,
       ),
       alignment: Alignment.center,
-      padding: EdgeInsets.all(10),
-      child: Text(
+      padding: const EdgeInsets.all(10),
+      child: const Text(
         "CO",
         style: TextStyle(
           color: Colors.white,
@@ -471,6 +483,6 @@ class MyLogo extends StatelessWidget {
 
 }
 
-const Color green = const Color(0xFF3db76d);
-const Color lightBlue = const Color(0xFF34a5db);
-const Color navyBlue = const Color(0xFF031b33);
+const Color green = Color(0xFF3db76d);
+const Color lightBlue = Color(0xFF34a5db);
+const Color navyBlue = Color(0xFF031b33);

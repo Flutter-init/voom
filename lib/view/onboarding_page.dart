@@ -53,7 +53,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
         width: double.infinity,
         height: 60,
         child: ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: kBottomBarItemscolor),
+          style: ElevatedButton.styleFrom(backgroundColor: kBottomBarItemscolor),
           child: Text(
             'Let\'s go right away!',
             style:

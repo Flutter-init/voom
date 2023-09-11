@@ -8,6 +8,7 @@ class FlutterTrans extends StatefulWidget {
   const FlutterTrans({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _FlutterTransState createState() => _FlutterTransState();
 }
 
@@ -38,32 +39,32 @@ class _FlutterTransState extends State<FlutterTrans> {
       body: Container(
         decoration: kContainerDeco,
         width: double.infinity,
-        margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
+        margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
         child: Form(
           key: formKey,
           child: ListView(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 child: TextFormField(
                   controller: amountController,
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.number,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(hintText: "Amount"),
+                  style: const TextStyle(color: Colors.black),
+                  decoration: const InputDecoration(hintText: "Amount"),
                   validator: (value) =>
                       value!.isNotEmpty ? null : "Amount is required",
                 ),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 child: TextFormField(
                   controller: currencyController,
                   textInputAction: TextInputAction.next,
-                  style: TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.black),
                   readOnly: true,
                   onTap: _openBottomSheet,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: "Currency",
                   ),
                   validator: (value) =>
@@ -95,12 +96,12 @@ class _FlutterTransState extends State<FlutterTrans> {
               //   ),
               // ),
               Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 child: TextFormField(
                   controller: emailController,
                   textInputAction: TextInputAction.next,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.black),
+                  decoration: const InputDecoration(
                     hintText: "Email",
                   ),
                   validator: (value) =>
@@ -108,12 +109,12 @@ class _FlutterTransState extends State<FlutterTrans> {
                 ),
               ),
               Container(
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 child: TextFormField(
                   controller: phoneNumberController,
                   textInputAction: TextInputAction.next,
-                  style: TextStyle(color: Colors.black),
-                  decoration: InputDecoration(
+                  style: const TextStyle(color: Colors.black),
+                  decoration: const InputDecoration(
                     hintText: "Phone Number",
                   ),
                   validator: (value) =>
@@ -123,13 +124,13 @@ class _FlutterTransState extends State<FlutterTrans> {
               Container(
                 width: double.infinity,
                 height: 50,
-                margin: EdgeInsets.fromLTRB(0, 20, 0, 10),
+                margin: const EdgeInsets.fromLTRB(0, 20, 0, 10),
                 child: OutlinedButton(
                   style: ButtonStyle(
                       backgroundColor:
                           MaterialStateProperty.all(kSendFABcolor)),
                   onPressed: _onPressed,
-                  child: Text(
+                  child: const Text(
                     "Make Payment",
                     style: TextStyle(color: Colors.white),
                   ),
@@ -166,6 +167,7 @@ class _FlutterTransState extends State<FlutterTrans> {
         acceptCardPayment: true,
         acceptUSSDPayment: true);
     final response = await flutterwave.initializeForUiPayments();
+    // ignore: unnecessary_null_comparison
     if (response != null) {
       showLoading(response.data!.status.toString());
     } else {
@@ -189,7 +191,7 @@ class _FlutterTransState extends State<FlutterTrans> {
     ];
     return Container(
       height: 250,
-      margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 0),
       color: Colors.white,
       child: ListView(
         children: currencies
@@ -200,10 +202,10 @@ class _FlutterTransState extends State<FlutterTrans> {
                       Text(
                         currency,
                         textAlign: TextAlign.start,
-                        style: TextStyle(color: Colors.black),
+                        style: const TextStyle(color: Colors.black),
                       ),
-                      SizedBox(height: 4),
-                      Divider(height: 1)
+                      const SizedBox(height: 4),
+                      const Divider(height: 1)
                     ],
                   ),
                 ))
@@ -227,7 +229,7 @@ class _FlutterTransState extends State<FlutterTrans> {
       builder: (BuildContext context) {
         return AlertDialog(
           content: Container(
-            margin: EdgeInsets.fromLTRB(30, 20, 30, 20),
+            margin: const EdgeInsets.fromLTRB(30, 20, 30, 20),
             width: double.infinity,
             height: 50,
             child: Text(message),

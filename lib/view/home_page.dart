@@ -1,3 +1,5 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers
+
 import 'package:google_fonts/google_fonts.dart';
 import 'package:search_page/search_page.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +31,7 @@ class _HomePageState extends State<HomePage> {
 
   getName() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    _fullName = prefs.getString(SharedPreferencesKeys.fullName.toString())!;
+    _fullName = prefs.getString(SharedPreferencesModel.fullName.toString())!;
     return _fullName;
   }
 
@@ -130,11 +132,11 @@ class _HomePageState extends State<HomePage> {
                             backgroundColor: kmonochromcolorwhite);
                       },
                     ),
-                    MyColumnCircleAvaterNText(
+                    const MyColumnCircleAvaterNText(
                       iconData: FontAwesomeIcons.moneyBillTrendUp,
                       text: 'Invest',
                     ),
-                    MyColumnCircleAvaterNText(
+                    const MyColumnCircleAvaterNText(
                       iconData: FontAwesomeIcons.hands,
                       text: 'Loan',
                     ),
@@ -181,7 +183,7 @@ class _HomePageState extends State<HomePage> {
               MyListTileCard(
                 header: 'Financial Overview',
                 text: 'Voom savings account',
-                avatarChild: Image(
+                avatarChild: const Image(
                   image: AssetImage('images/logo.png'),
                 ),
                 subText: _fullName.isEmpty
@@ -257,6 +259,7 @@ class _HomePageState extends State<HomePage> {
               Container(
                 // margin: EdgeInsets.symmetric(horizontal: 10),
                 height: height * 0.5,
+                decoration: kContainerDeco,
                 child: numItems != 0
                     ? ListView.builder(
                         controller: _controller,
@@ -272,7 +275,6 @@ class _HomePageState extends State<HomePage> {
                           style: GoogleFonts.poppins(color: Colors.white),
                         ),
                       ),
-                decoration: kContainerDeco,
               ),
             ],
           ),

@@ -334,6 +334,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     _emailCtrl.text, _passwordCtrl.text),
                 _addUserToFireStore()
               })
+          // ignore: body_might_complete_normally_catch_error
           .catchError((e) {
         MessageUtils.voomSnackBarMessage(context, e!.message, 'Dismiss');
       });

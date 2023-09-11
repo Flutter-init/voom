@@ -264,6 +264,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 _passwordCtrl.clear(),
                 Navigator.popAndPushNamed(context, HomePageModel.id),
               })
+          // ignore: body_might_complete_normally_catch_error
           .catchError((e) {
         // Fluttertoast.showToast(msg: e!.message);
         MessageUtils.voomSnackBarMessage(
